@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Rule Name="AndroidEmulator" DisplayName="Google Android 仿真程序" PageTemplate="debugger" Description="Google Android 仿真程序调试器选项" xmlns:sys="clr-namespace:System;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns="http://schemas.microsoft.com/build/2009/properties">
+    <Rule.Metadata>
+        <sys:Guid x:Key="DebugTargetTypeCommandGuid">FEEA6E9D-77D8-423F-9EDE-3970CBB76125</sys:Guid>
+        <sys:UInt32 x:Key="DebugTargetTypeCommandId">0x400</sys:UInt32>
+        <sys:String x:Key="DebugTargetDropdownEnum">AndroidEmulatorID</sys:String>
+    </Rule.Metadata>
+
+    <Rule.DataSource>
+        <DataSource Persistence="UserFile" HasConfigurationCondition="true"/>
+    </Rule.DataSource>
+
+    <Rule.Categories>
+        <Category Name="StartOptions" DisplayName="启动选项" Description="启动选项"/>
+    </Rule.Categories>
+
+    <DynamicEnumProperty Name="AndroidEmulatorID" DisplayName="调试目标" EnumProvider="MDDAndroidEmulators" Description="指定要用于调试的仿真程序。如果未安装仿真程序，请使用调试目标下拉菜单中的“下载仿真程序 8.1...”。" F1Keyword="javascript.project.property.debugging.debuggertarget"/>
+
+    <BoolProperty Name="AllowLocalNetworkLoopback" DisplayName="允许本地网络环回" F1Keyword="javascript.project.property.debugging.allowlocalnetworkloopback" Description="在调试 Windows 应用商店应用时，你可以使用本地服务、调试网络通讯以及使用本地环回来与同一台计算机上的组件进行通信。">
+    </BoolProperty>
+</Rule>

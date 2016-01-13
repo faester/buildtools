@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Copyright, Microsoft Corporation, All rights reserved.-->
+<Rule Name="WindowsRemote" DisplayName="Ordinateur distant" PageTemplate="debugger" Description="Options de débogueur distant" xmlns:sys="clr-namespace:System;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns="http://schemas.microsoft.com/build/2009/properties">
+
+    <Rule.DataSource>
+		<DataSource Persistence="UserFile" HasConfigurationCondition="true"/>
+    </Rule.DataSource>
+	
+	<StringProperty Name="DebuggerMachineName" DisplayName="Nom de l'ordinateur" F1Keyword="javascript.project.property.debugging.machinename" Description="Spécifie le nom de l'ordinateur à utiliser durant le débogage à distance. Utilisez la zone de liste déroulante pour trouver des ordinateurs proches.">
+		<StringProperty.DataSource>
+			<DataSource Persistence="UserFile" HasConfigurationCondition="true"/>
+		</StringProperty.DataSource>
+		<StringProperty.ValueEditors>
+			<ValueEditor EditorType="RemoteDebuggerOptionsPropertyEditor" DisplayName="&lt;Rechercher...&gt;">
+				<ValueEditor.Metadata>
+					<NameValuePair Name="AuthenticationPropertyName" Value="RequireAuthentication"/>
+				</ValueEditor.Metadata>
+			</ValueEditor>
+		</StringProperty.ValueEditors>
+	</StringProperty>
+
+	<BoolProperty Name="DebuggerRequireAuthentication" DisplayName="Exiger une authentification" F1Keyword="javascript.project.property.debugging.requireauthentication" Description="Indique si une authentification est nécessaire durant le débogage sur des appareils distants.">
+		<BoolProperty.DataSource>
+			<DataSource Persistence="UserFile" HasConfigurationCondition="true"/>
+		</BoolProperty.DataSource>
+	</BoolProperty>
+
+	<BoolProperty Name="AllowLocalNetworkLoopback" DisplayName="Autoriser le bouclage de réseau local" F1Keyword="javascript.project.property.debugging.allowlocalnetworkloopback" Description="Durant le débogage d'une application du Windows Store, vous permet d'utiliser des services locaux, de déboguer le trafic réseau et d'utiliser un bouclage local pour communiquer avec des composants sur le même ordinateur.">
+	</BoolProperty>
+</Rule>

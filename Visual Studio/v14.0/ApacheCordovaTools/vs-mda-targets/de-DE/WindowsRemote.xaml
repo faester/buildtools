@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Copyright, Microsoft Corporation, All rights reserved.-->
+<Rule Name="WindowsRemote" DisplayName="Remotecomputer" PageTemplate="debugger" Description="Remotedebuggeroptionen" xmlns:sys="clr-namespace:System;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns="http://schemas.microsoft.com/build/2009/properties">
+
+    <Rule.DataSource>
+		<DataSource Persistence="UserFile" HasConfigurationCondition="true"/>
+    </Rule.DataSource>
+	
+	<StringProperty Name="DebuggerMachineName" DisplayName="Computername" F1Keyword="javascript.project.property.debugging.machinename" Description="Gibt den Namen des Computers an, der für das Remotedebugging verwendet werden soll. Verwenden Sie die Dropdownliste, um Computer in der Umgebung zu finden.">
+		<StringProperty.DataSource>
+			<DataSource Persistence="UserFile" HasConfigurationCondition="true"/>
+		</StringProperty.DataSource>
+		<StringProperty.ValueEditors>
+			<ValueEditor EditorType="RemoteDebuggerOptionsPropertyEditor" DisplayName="&lt;Suchen ...&gt;">
+				<ValueEditor.Metadata>
+					<NameValuePair Name="AuthenticationPropertyName" Value="RequireAuthentication"/>
+				</ValueEditor.Metadata>
+			</ValueEditor>
+		</StringProperty.ValueEditors>
+	</StringProperty>
+
+	<BoolProperty Name="DebuggerRequireAuthentication" DisplayName="Authentifizierung erforderlich" F1Keyword="javascript.project.property.debugging.requireauthentication" Description="Gibt an, ob beim Debugging auf Remotegeräten eine Authentifizierung erforderlich ist.">
+		<BoolProperty.DataSource>
+			<DataSource Persistence="UserFile" HasConfigurationCondition="true"/>
+		</BoolProperty.DataSource>
+	</BoolProperty>
+
+	<BoolProperty Name="AllowLocalNetworkLoopback" DisplayName="Lokales Netzwerkloopback zulassen" F1Keyword="javascript.project.property.debugging.allowlocalnetworkloopback" Description="Ermöglicht beim Debuggen einer Windows Store-App, lokale Dienste zu nutzen, den Netzwerkdatenverkehr zu debuggen und ein lokales Loopback für die Kommunikation mit Komponenten auf dem gleichen Computer zu verwenden.">
+	</BoolProperty>
+</Rule>

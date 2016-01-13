@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Copyright, Microsoft Corporation, All rights reserved.-->
+<Rule Name="DebuggerGeneralProperties" DisplayName="Propriétés générales du débogueur" Description="Options générales du débogueur" xmlns="http://schemas.microsoft.com/build/2009/properties">
+	<Rule.DataSource>
+		<DataSource Persistence="UserFile"/>
+	</Rule.DataSource>
+
+	<StringProperty Name="SymbolsPath" DisplayName="Chemin de recherche des symboles" Description="Chemin de recherche utilisé par le débogueur pour trouver les symboles.">
+	</StringProperty>
+
+	<StringProperty Name="DebuggerFlavor" Visible="false" Description="Règle de débogage sélectionnée en tant que débogueur actif.">
+	</StringProperty>
+
+	<EnumProperty Name="ImageClrType" Visible="false" Description="Propriété 'hidden' que nous passons aux débogueurs pour leur indiquer s'il s'agit d'un projet managé.">
+		<EnumProperty.DataSource>
+			<DataSource Persistence="UserFile" HasConfigurationCondition="true" PersistedName="_TargetImageClrType"/>
+		</EnumProperty.DataSource>
+		<EnumValue Name="Native" DisplayName="Image native" Description="L'image exécutable utilisée pour le débogage est une application entièrement native."/>
+		<EnumValue Name="Mixed" DisplayName="Image mixte" Description="L'image exécutable utilisée pour le débogage est une combinaison de code natif et managé."/>
+		<EnumValue Name="Managed" DisplayName="Image managée" Description="L'image exécutable utilisée pour le débogage est une application entièrement managée."/>
+	</EnumProperty>
+
+	<BoolProperty Name="AllowLocalNetworkLoopback" DisplayName="Autoriser le bouclage de réseau local" F1Keyword="javascript.project.property.debugging.allowlocalnetworkloopback" Description="Durant le débogage d'une application du Windows Store, vous permet d'utiliser des services locaux, de déboguer le trafic réseau et d'utiliser un bouclage local pour communiquer avec des composants sur le même ordinateur.">
+	</BoolProperty>
+</Rule>

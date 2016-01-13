@@ -1,0 +1,23 @@
+﻿<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+	<!-- Add your debugger to the list of available debuggers in the project property pages dialog. -->
+    <PropertyPageSchema Include="$(MSBuildThisFileDirectory)$(LangName)\PhoneDevice.xaml">
+      <Context>Project</Context>
+    </PropertyPageSchema>
+    <PropertyPageSchema Include="$(MSBuildThisFileDirectory)$(LangName)\PhoneEmulatorWvga512.xaml">
+      <Context>Project</Context>
+    </PropertyPageSchema>
+    <PropertyPageSchema Include="$(MSBuildThisFileDirectory)$(LangName)\PhoneEmulatorWvga.xaml">
+      <Context>Project</Context>
+    </PropertyPageSchema>
+    <PropertyPageSchema Include="$(MSBuildThisFileDirectory)$(LangName)\PhoneEmulatorWxga.xaml">
+      <Context>Project</Context>
+    </PropertyPageSchema>
+    <PropertyPageSchema Include="$(MSBuildThisFileDirectory)$(LangName)\PhoneEmulator720P.xaml">
+      <Context>Project</Context>
+    </PropertyPageSchema>
+  </ItemGroup>
+  <PropertyGroup>
+    <DebuggerFlavor>PhoneEmulatorWvga512</DebuggerFlavor>
+  </PropertyGroup>
+</Project>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Rule Name="AndroidEmulator" DisplayName="Google Android Öykünücüsü" PageTemplate="debugger" Description="Google Android Öykünücüsü Hata Ayıklayıcı Seçenekleri" xmlns:sys="clr-namespace:System;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns="http://schemas.microsoft.com/build/2009/properties">
+    <Rule.Metadata>
+        <sys:Guid x:Key="DebugTargetTypeCommandGuid">FEEA6E9D-77D8-423F-9EDE-3970CBB76125</sys:Guid>
+        <sys:UInt32 x:Key="DebugTargetTypeCommandId">0x400</sys:UInt32>
+        <sys:String x:Key="DebugTargetDropdownEnum">AndroidEmulatorID</sys:String>
+    </Rule.Metadata>
+
+    <Rule.DataSource>
+        <DataSource Persistence="UserFile" HasConfigurationCondition="true"/>
+    </Rule.DataSource>
+
+    <Rule.Categories>
+        <Category Name="StartOptions" DisplayName="Başlangıç Seçenekleri" Description="Başlangıç Seçenekleri"/>
+    </Rule.Categories>
+
+    <DynamicEnumProperty Name="AndroidEmulatorID" DisplayName="Hata Ayıklama Hedefi" EnumProvider="MDDAndroidEmulators" Description="Hata ayıklama için kullanılacak öykünücüyü belirtir. Hiçbir öykünücü yüklü değilse lütfen hata ayıklama hedefi açılan kutusunda 'Emulator 8.1'i indirin...' bağlantısını kullanın." F1Keyword="javascript.project.property.debugging.debuggertarget"/>
+
+    <BoolProperty Name="AllowLocalNetworkLoopback" DisplayName="Yerel Ağ Geri Döngüsüne İzin Ver" F1Keyword="javascript.project.property.debugging.allowlocalnetworkloopback" Description="Windows Mağazası uygulamasında hata ayıklanırken, yerel hizmetleri, hata ayıklama ağ trafiğini ve aynı makine üzerinde bileşenlerle iletişim kurmak için yerel geri döngüyü kullanmaya izin verir.">
+    </BoolProperty>
+</Rule>

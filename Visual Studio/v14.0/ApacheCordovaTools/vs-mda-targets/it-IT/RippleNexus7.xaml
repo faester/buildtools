@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Rule Name="RippleNexus7" DisplayName="Ripple - Nexus 7 (tablet)" PageTemplate="debugger" Description="Opzioni di Ripple - Nexus 7 (tablet)" xmlns="http://schemas.microsoft.com/build/2009/properties">
+    <Rule.DataSource>
+		<DataSource Persistence="UserFile" HasConfigurationCondition="true"/>
+    </Rule.DataSource>
+
+	<BoolProperty Name="AllowLocalNetworkLoopback" DisplayName="Consenti loopback della rete locale" F1Keyword="javascript.project.property.debugging.allowlocalnetworkloopback" Description="Quando si esegue il debug di un'app di Windows Store, consente di usare servizi locali, eseguire il debug del traffico di rete e usare un loopback locale per le comunicazioni con i componenti nello stesso computer.">
+	</BoolProperty>
+</Rule>

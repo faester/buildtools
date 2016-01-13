@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Copyright, Microsoft Corporation, All rights reserved.-->
+<Rule Name="DebuggerGeneralProperties" DisplayName="Общие свойства отладчика" Description="Общие параметры отладчика" xmlns="http://schemas.microsoft.com/build/2009/properties">
+	<Rule.DataSource>
+		<DataSource Persistence="UserFile"/>
+	</Rule.DataSource>
+
+	<StringProperty Name="SymbolsPath" DisplayName="Путь поиска символов" Description="Путь поиска используется отладчиком для поиска символов.">
+	</StringProperty>
+
+	<StringProperty Name="DebuggerFlavor" Visible="false" Description="Правило отладки выбрано как активный отладчик.">
+	</StringProperty>
+
+	<EnumProperty Name="ImageClrType" Visible="false" Description="Cвойство &quot;hidden&quot;, которое передается отладчикам, чтобы сообщить им, является ли проект управляемым.">
+		<EnumProperty.DataSource>
+			<DataSource Persistence="UserFile" HasConfigurationCondition="true" PersistedName="_TargetImageClrType"/>
+		</EnumProperty.DataSource>
+		<EnumValue Name="Native" DisplayName="Собственный образ" Description="Исполняемый образ для отладки является полностью собственным приложением."/>
+		<EnumValue Name="Mixed" DisplayName="Смешанный образ" Description="Исполняемый образ для отладки является смесью машинного и управляемого кода."/>
+		<EnumValue Name="Managed" DisplayName="Управляемый образ" Description="Исполняемый образ для отладки является полностью управляемым приложением."/>
+	</EnumProperty>
+
+	<BoolProperty Name="AllowLocalNetworkLoopback" DisplayName="Разрешить петлевой адрес в локальной сети" F1Keyword="javascript.project.property.debugging.allowlocalnetworkloopback" Description="При отладке приложений Магазина Windows разрешает использовать локальные службы, отлаживать сетевой трафик и использовать локальные петлевые адреса для связи с компонентами на том же компьютере.">
+	</BoolProperty>
+</Rule>

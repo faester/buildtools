@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Copyright, Microsoft Corporation, All rights reserved.-->
+<Rule Name="WindowsRemoteProperties" DisplayName="Configurações de inicialização" PageTemplate="generic" Order="300" Description="Opções de configurações de inicialização" xmlns:sys="clr-namespace:System;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns="http://schemas.microsoft.com/build/2009/properties">
+
+	<Rule.Metadata>
+		<sys:Guid x:Key="DebugTargetTypeCommandGuid">FEEA6E9D-77D8-423F-9EDE-3970CBB76125</sys:Guid>
+		<sys:UInt32 x:Key="DebugTargetTypeCommandId">0x400</sys:UInt32>
+	</Rule.Metadata>
+
+	<Rule.DataSource>
+		<DataSource Persistence="UserFile" HasConfigurationCondition="true"/>
+	</Rule.DataSource>
+
+	<Rule.Categories>
+		<Category Name="StartOptions" DisplayName="Opções de Inicialização" Description="Opções de Inicialização"/>
+		<Category Name="RemoteOptions" DisplayName="Opções Remotas" Description="Opções Remotas"/>
+	</Rule.Categories>
+
+	<BoolProperty Name="LaunchApplication" DisplayName="Inicializar Aplicativo" Category="StartOptions" F1Keyword="javascript.project.property.debugging.launchapplication" Description="Especifica se deve-se inicializar o aplicativo imediatamente ou esperar para depurar o aplicativo quando ele começar a ser executado."/>
+
+	<BoolProperty Name="AllowLocalNetworkLoopback" DisplayName="Permitir o loopback de rede local" Category="StartOptions" F1Keyword="javascript.project.property.debugging.allowlocalnetworkloopback" Description="Na depuração de um aplicativo da Windows Store, permite que você use serviços locais, depure o tráfego de rede e use um loopback local para comunicação com componentes no mesmo computador."/>
+
+	<EnumProperty Name="DebuggerType" DisplayName="Tipo de Depurador" Category="StartOptions" F1Keyword="javascript.project.property.debugging.debuggertype" Description="Especifica qual depurador habilitar. Quando definido como Misto, os depuradores para código gerenciado e nativo são invocados.">
+		<EnumValue Name="NativeOnly" DisplayName="Apenas Nativo" Description="Apenas Nativo"/>
+		<EnumValue Name="ManagedOnly" DisplayName="Somente Gerenciado" Description="Somente Gerenciado"/>
+		<EnumValue Name="Script" DisplayName="Somente Script" Description="Somente Script"/>
+		<EnumValue Name="Mixed" DisplayName="Misto (Nativo e Gerenciado)" Description="Misto (Nativo e Gerenciado)"/>
+		<EnumProperty.Metadata>
+			<NameValuePair Name="IsDebugType" Value="true"/>
+		</EnumProperty.Metadata>
+	</EnumProperty>
+
+	<StringProperty Name="DebuggerMachineName" DisplayName="Nome do Computador" Category="RemoteOptions" F1Keyword="javascript.project.property.debugging.machinename" Description="Especifica o nome do computador a ser utilizado para depurar remotamente. Use o menu suspenso para encontrar máquinas próximas.">
+		<StringProperty.ValueEditors>
+			<ValueEditor EditorType="RemoteDebuggerOptionsPropertyEditor" DisplayName="&lt;Localizar...&gt;">
+				<ValueEditor.Metadata>
+					<NameValuePair Name="AuthenticationPropertyName" Value="RequireAuthentication"/>
+				</ValueEditor.Metadata>
+			</ValueEditor>
+		</StringProperty.ValueEditors>
+	</StringProperty>
+
+	<BoolProperty Name="DebuggerRequireAuthentication" DisplayName="Exigir Autenticação" Category="RemoteOptions" F1Keyword="javascript.project.property.debugging.requireauthentication" Description="Especifica se a autenticação é necessária quando houver depuração em dispositivos remotos."/>
+</Rule>

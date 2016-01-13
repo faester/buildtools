@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Copyright, Microsoft Corporation, All rights reserved.-->
+<Rule Name="WindowsRemote" DisplayName="Uzak Makine" PageTemplate="debugger" Description="Uzak Hata Ayıklayıcı Seçenekleri" xmlns:sys="clr-namespace:System;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns="http://schemas.microsoft.com/build/2009/properties">
+
+    <Rule.DataSource>
+		<DataSource Persistence="UserFile" HasConfigurationCondition="true"/>
+    </Rule.DataSource>
+	
+	<StringProperty Name="DebuggerMachineName" DisplayName="Makine Adı" F1Keyword="javascript.project.property.debugging.machinename" Description="Uzaktan hata ayıklanırken kullanılacak makine adını belirtir. Yakındaki makineleri bulmak için açılır listeyi kullanın.">
+		<StringProperty.DataSource>
+			<DataSource Persistence="UserFile" HasConfigurationCondition="true"/>
+		</StringProperty.DataSource>
+		<StringProperty.ValueEditors>
+			<ValueEditor EditorType="RemoteDebuggerOptionsPropertyEditor" DisplayName="&lt;Bul...&gt;">
+				<ValueEditor.Metadata>
+					<NameValuePair Name="AuthenticationPropertyName" Value="RequireAuthentication"/>
+				</ValueEditor.Metadata>
+			</ValueEditor>
+		</StringProperty.ValueEditors>
+	</StringProperty>
+
+	<BoolProperty Name="DebuggerRequireAuthentication" DisplayName="Kimlik Doğrulama Gerektir" F1Keyword="javascript.project.property.debugging.requireauthentication" Description="Uzak cihazlar üzerinde hata ayıklanırken kimlik doğrulamanın gerekip gerekmeyeceğini belirtir.">
+		<BoolProperty.DataSource>
+			<DataSource Persistence="UserFile" HasConfigurationCondition="true"/>
+		</BoolProperty.DataSource>
+	</BoolProperty>
+
+	<BoolProperty Name="AllowLocalNetworkLoopback" DisplayName="Yerel Ağ Geri Döngüsüne İzin Ver" F1Keyword="javascript.project.property.debugging.allowlocalnetworkloopback" Description="Windows Mağazası uygulamasında hata ayıklanırken, yerel hizmetleri, hata ayıklama ağ trafiğini ve aynı makine üzerinde bileşenlerle iletişim kurmak için yerel geri döngüyü kullanmaya izin verir.">
+	</BoolProperty>
+</Rule>

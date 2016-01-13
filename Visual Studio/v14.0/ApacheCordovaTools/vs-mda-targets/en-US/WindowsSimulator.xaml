@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Rule Name="WindowsSimulator" DisplayName="Simulator" PageTemplate="debugger" Description="Simulator Options" xmlns="http://schemas.microsoft.com/build/2009/properties">
+	<Rule.DataSource>
+		<DataSource Persistence="UserFile" HasConfigurationCondition="true"/>
+    </Rule.DataSource>
+
+	<BoolProperty
+    Name="AllowLocalNetworkLoopback"
+    DisplayName="Allow Local Network Loopback"
+    F1Keyword="javascript.project.property.debugging.allowlocalnetworkloopback"
+    Description="When debugging a Windows Store app, allows you to use local services, debug network traffic, and use a local loopback for communicating with components on the same machine.">
+	</BoolProperty>
+</Rule>

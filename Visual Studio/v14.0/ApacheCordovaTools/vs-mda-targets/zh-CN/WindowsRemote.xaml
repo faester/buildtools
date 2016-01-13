@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Copyright, Microsoft Corporation, All rights reserved.-->
+<Rule Name="WindowsRemote" DisplayName="远程计算机" PageTemplate="debugger" Description="远程调试器选项" xmlns:sys="clr-namespace:System;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns="http://schemas.microsoft.com/build/2009/properties">
+
+    <Rule.DataSource>
+		<DataSource Persistence="UserFile" HasConfigurationCondition="true"/>
+    </Rule.DataSource>
+	
+	<StringProperty Name="DebuggerMachineName" DisplayName="计算机名称" F1Keyword="javascript.project.property.debugging.machinename" Description="指定远程调试时要使用的计算机没能够成。请使用下拉列表查找临近计算机。">
+		<StringProperty.DataSource>
+			<DataSource Persistence="UserFile" HasConfigurationCondition="true"/>
+		</StringProperty.DataSource>
+		<StringProperty.ValueEditors>
+			<ValueEditor EditorType="RemoteDebuggerOptionsPropertyEditor" DisplayName="&lt;定位...&gt;">
+				<ValueEditor.Metadata>
+					<NameValuePair Name="AuthenticationPropertyName" Value="RequireAuthentication"/>
+				</ValueEditor.Metadata>
+			</ValueEditor>
+		</StringProperty.ValueEditors>
+	</StringProperty>
+
+	<BoolProperty Name="DebuggerRequireAuthentication" DisplayName="要求身份验证" F1Keyword="javascript.project.property.debugging.requireauthentication" Description="指定在远程设备上进行调试时是否需要进行身份验证。">
+		<BoolProperty.DataSource>
+			<DataSource Persistence="UserFile" HasConfigurationCondition="true"/>
+		</BoolProperty.DataSource>
+	</BoolProperty>
+
+	<BoolProperty Name="AllowLocalNetworkLoopback" DisplayName="允许本地网络环回" F1Keyword="javascript.project.property.debugging.allowlocalnetworkloopback" Description="在调试 Windows 应用商店应用时，你可以使用本地服务、调试网络通讯以及使用本地环回来与同一台计算机上的组件进行通信。">
+	</BoolProperty>
+</Rule>

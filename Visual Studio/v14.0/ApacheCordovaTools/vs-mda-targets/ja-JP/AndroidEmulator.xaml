@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Rule Name="AndroidEmulator" DisplayName="Google Android エミュレーター" PageTemplate="debugger" Description="Google Android エミュレーターのデバッガー オプション" xmlns:sys="clr-namespace:System;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns="http://schemas.microsoft.com/build/2009/properties">
+    <Rule.Metadata>
+        <sys:Guid x:Key="DebugTargetTypeCommandGuid">FEEA6E9D-77D8-423F-9EDE-3970CBB76125</sys:Guid>
+        <sys:UInt32 x:Key="DebugTargetTypeCommandId">0x400</sys:UInt32>
+        <sys:String x:Key="DebugTargetDropdownEnum">AndroidEmulatorID</sys:String>
+    </Rule.Metadata>
+
+    <Rule.DataSource>
+        <DataSource Persistence="UserFile" HasConfigurationCondition="true"/>
+    </Rule.DataSource>
+
+    <Rule.Categories>
+        <Category Name="StartOptions" DisplayName="開始オプション" Description="開始オプション"/>
+    </Rule.Categories>
+
+    <DynamicEnumProperty Name="AndroidEmulatorID" DisplayName="デバッグ ターゲット" EnumProvider="MDDAndroidEmulators" Description="デバッグに使用するエミュレーターを指定します。エミュレーターがインストールされていない場合は、デバッグ ターゲットのドロップダウンで [エミュレーター 8.1 のダウンロード] を使用してください。" F1Keyword="javascript.project.property.debugging.debuggertarget"/>
+
+    <BoolProperty Name="AllowLocalNetworkLoopback" DisplayName="ローカル ネットワーク ループバックの許可" F1Keyword="javascript.project.property.debugging.allowlocalnetworkloopback" Description="Windows ストア アプリをデバッグする際に、ローカル サービスの使用、ネットワーク トラフィックのデバッグ、およびローカル ループバックの使用 (同一コンピューター上のコンポーネントとの通信用) を許可します。">
+    </BoolProperty>
+</Rule>

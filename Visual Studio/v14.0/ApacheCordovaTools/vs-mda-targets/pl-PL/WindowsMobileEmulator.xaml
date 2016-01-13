@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Rule Name="WindowsMobileEmulator" DisplayName="Emulator systemu Windows Mobile" PageTemplate="debugger" Description="Opcje debugera emulatora systemu Windows Mobile" xmlns:sys="clr-namespace:System;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns="http://schemas.microsoft.com/build/2009/properties">
+    <Rule.Metadata>
+        <sys:Guid x:Key="DebugTargetTypeCommandGuid">FEEA6E9D-77D8-423F-9EDE-3970CBB76125</sys:Guid>
+        <sys:UInt32 x:Key="DebugTargetTypeCommandId">0x400</sys:UInt32>
+        <sys:String x:Key="DebugTargetDropdownEnum">WindowsMobileEmulatorID</sys:String>
+    </Rule.Metadata>
+
+    <Rule.DataSource>
+        <DataSource Persistence="UserFile" HasConfigurationCondition="true"/>
+    </Rule.DataSource>
+
+    <Rule.Categories>
+        <Category Name="StartOptions" DisplayName="Opcje uruchamiania" Description="Opcje uruchamiania"/>
+    </Rule.Categories>
+
+    <DynamicEnumProperty Name="WindowsMobileEmulatorID" DisplayName="Debuguj element docelowy" EnumProvider="MDDWindowsPhoneEmulators" Description="Określa emulator używany do debugowania. Jeśli nie zainstalowano żadnych emulatorów, użyj polecenia „Pobierz emulator 8.1...” na liście rozwijanej elementu docelowego debugowania." F1Keyword="javascript.project.property.debugging.debuggertarget"/>
+
+    <BoolProperty Name="AllowLocalNetworkLoopback" DisplayName="Zezwalaj na sprzężenie zwrotne sieci lokalnej" F1Keyword="javascript.project.property.debugging.allowlocalnetworkloopback" Description="Podczas debugowania aplikacji do Sklepu Windows umożliwia używanie usług lokalnych, debugowanie ruchu w sieci i używanie lokalnego sprzężenia zwrotnego do komunikowania się ze składnikami na tym samym komputerze.">
+    </BoolProperty>
+</Rule>

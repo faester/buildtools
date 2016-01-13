@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Rule Name="PhoneEmulatorWvga" DisplayName="Эмулятор WVGA" PageTemplate="debugger" Description="Параметры эмулятора WVGA" xmlns="http://schemas.microsoft.com/build/2009/properties">
+    <Rule.DataSource>
+		<DataSource Persistence="UserFile" HasConfigurationCondition="true"/>
+    </Rule.DataSource>
+
+	<BoolProperty Name="AllowLocalNetworkLoopback" DisplayName="Разрешить петлевой адрес в локальной сети" F1Keyword="javascript.project.property.debugging.allowlocalnetworkloopback" Description="При отладке приложений Магазина Windows разрешает использовать локальные службы, отлаживать сетевой трафик и использовать локальные петлевые адреса для связи с компонентами на том же компьютере.">
+	</BoolProperty>
+</Rule>

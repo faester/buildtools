@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Rule Name="WindowsMobileEmulator" DisplayName="Emulátor Windows Mobile" PageTemplate="debugger" Description="Možnosti ladění Emulátoru Windows Mobile" xmlns:sys="clr-namespace:System;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns="http://schemas.microsoft.com/build/2009/properties">
+    <Rule.Metadata>
+        <sys:Guid x:Key="DebugTargetTypeCommandGuid">FEEA6E9D-77D8-423F-9EDE-3970CBB76125</sys:Guid>
+        <sys:UInt32 x:Key="DebugTargetTypeCommandId">0x400</sys:UInt32>
+        <sys:String x:Key="DebugTargetDropdownEnum">WindowsMobileEmulatorID</sys:String>
+    </Rule.Metadata>
+
+    <Rule.DataSource>
+        <DataSource Persistence="UserFile" HasConfigurationCondition="true"/>
+    </Rule.DataSource>
+
+    <Rule.Categories>
+        <Category Name="StartOptions" DisplayName="Možnosti spuštění" Description="Možnosti spuštění"/>
+    </Rule.Categories>
+
+    <DynamicEnumProperty Name="WindowsMobileEmulatorID" DisplayName="Ladit cíl" EnumProvider="MDDWindowsPhoneEmulators" Description="Určuje emulátor, který se má používat pro ladění. Pokud nejsou nainstalované žádné emulátory, použijte v rozevíracím seznamu cílů ladění možnost Stáhnout emulátor verze 8.1..." F1Keyword="javascript.project.property.debugging.debuggertarget"/>
+
+    <BoolProperty Name="AllowLocalNetworkLoopback" DisplayName="Povolit zpětnou smyčku místní sítě" F1Keyword="javascript.project.property.debugging.allowlocalnetworkloopback" Description="Při ladění aplikace pro Windows Store umožňuje použití místních služeb, ladění síťových přenosů a použití místní zpětné smyčky pro komunikaci se součástmi ve stejném počítači.">
+    </BoolProperty>
+</Rule>

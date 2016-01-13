@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Rule Name="iOSEmulatoriPhone4S" DisplayName="Simulator - iPhone 4S" PageTemplate="debugger" Description="Simulator - iPhone 4S" xmlns="http://schemas.microsoft.com/build/2009/properties">
+  <Rule.DataSource>
+		<DataSource Persistence="UserFile" HasConfigurationCondition="true"/>
+  </Rule.DataSource>
+
+	<BoolProperty Name="AllowLocalNetworkLoopback" DisplayName="Yerel Ağ Geri Döngüsüne İzin Ver" F1Keyword="javascript.project.property.debugging.allowlocalnetworkloopback" Description="Windows Mağazası uygulamasında hata ayıklanırken, yerel hizmetleri, hata ayıklama ağ trafiğini ve aynı makine üzerinde bileşenlerle iletişim kurmak için yerel geri döngüyü kullanmaya izin verir.">
+	</BoolProperty>
+</Rule>

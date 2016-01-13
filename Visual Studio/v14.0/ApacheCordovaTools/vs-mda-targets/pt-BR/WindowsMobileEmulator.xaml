@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Rule Name="WindowsMobileEmulator" DisplayName="Windows Mobile Emulator" PageTemplate="debugger" Description="Opções do depurador do Windows Mobile Emulator" xmlns:sys="clr-namespace:System;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns="http://schemas.microsoft.com/build/2009/properties">
+    <Rule.Metadata>
+        <sys:Guid x:Key="DebugTargetTypeCommandGuid">FEEA6E9D-77D8-423F-9EDE-3970CBB76125</sys:Guid>
+        <sys:UInt32 x:Key="DebugTargetTypeCommandId">0x400</sys:UInt32>
+        <sys:String x:Key="DebugTargetDropdownEnum">WindowsMobileEmulatorID</sys:String>
+    </Rule.Metadata>
+
+    <Rule.DataSource>
+        <DataSource Persistence="UserFile" HasConfigurationCondition="true"/>
+    </Rule.DataSource>
+
+    <Rule.Categories>
+        <Category Name="StartOptions" DisplayName="Opções de Inicialização" Description="Opções de Inicialização"/>
+    </Rule.Categories>
+
+    <DynamicEnumProperty Name="WindowsMobileEmulatorID" DisplayName="Destino de Depuração" EnumProvider="MDDWindowsPhoneEmulators" Description="Especifica o emulador a ser usado para depuração. Se nenhum emulador estiver instalado, use 'Baixar o Emulador 8.1...' na lista suspensa de destino de depuração." F1Keyword="javascript.project.property.debugging.debuggertarget"/>
+
+    <BoolProperty Name="AllowLocalNetworkLoopback" DisplayName="Permitir o loopback de rede local" F1Keyword="javascript.project.property.debugging.allowlocalnetworkloopback" Description="Na depuração de um aplicativo da Windows Store, permite que você use serviços locais, depure o tráfego de rede e use um loopback local para comunicação com componentes no mesmo computador.">
+    </BoolProperty>
+</Rule>

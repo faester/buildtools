@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Rule Name="RippleNexus7" DisplayName="Ripple — Nexus 7 (Tablet)" PageTemplate="debugger" Description="Ripple — opcje urządzenia Nexus 7 (Tablet)" xmlns="http://schemas.microsoft.com/build/2009/properties">
+    <Rule.DataSource>
+		<DataSource Persistence="UserFile" HasConfigurationCondition="true"/>
+    </Rule.DataSource>
+
+	<BoolProperty Name="AllowLocalNetworkLoopback" DisplayName="Zezwalaj na sprzężenie zwrotne sieci lokalnej" F1Keyword="javascript.project.property.debugging.allowlocalnetworkloopback" Description="Podczas debugowania aplikacji do Sklepu Windows umożliwia używanie usług lokalnych, debugowanie ruchu w sieci i używanie lokalnego sprzężenia zwrotnego do komunikowania się ze składnikami na tym samym komputerze.">
+	</BoolProperty>
+</Rule>

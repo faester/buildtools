@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Copyright, Microsoft Corporation, All rights reserved.-->
+<Rule Name="DebuggerGeneralProperties" DisplayName="Hata Ayıklayıcı Genel Özellikleri" Description="Genel Hata Ayıklayıcı seçenekleri" xmlns="http://schemas.microsoft.com/build/2009/properties">
+	<Rule.DataSource>
+		<DataSource Persistence="UserFile"/>
+	</Rule.DataSource>
+
+	<StringProperty Name="SymbolsPath" DisplayName="Simge Arama Yolu" Description="Simgeleri bulmak için hata ayıklayıcısı tarafından kullanılan arama yolu.">
+	</StringProperty>
+
+	<StringProperty Name="DebuggerFlavor" Visible="false" Description="Etkin hata ayıklayıcı olarak seçilen hata ayıklama kuralı.">
+	</StringProperty>
+
+	<EnumProperty Name="ImageClrType" Visible="false" Description="Hata ayıklayıcılarına bunun yönetilen bir proje olup olmadığını bildirmek için geçirdiğimiz 'gizli' özellik.">
+		<EnumProperty.DataSource>
+			<DataSource Persistence="UserFile" HasConfigurationCondition="true" PersistedName="_TargetImageClrType"/>
+		</EnumProperty.DataSource>
+		<EnumValue Name="Native" DisplayName="Yerel Görüntü" Description="Hataları ayıklanacak yürütülebilir görüntü, tamamen yerel bir uygulamadır."/>
+		<EnumValue Name="Mixed" DisplayName="Karma Görüntü" Description="Hataları ayıklanacak yürütülebilir görüntü, yerel ve yönetilen kodun bir karışımıdır."/>
+		<EnumValue Name="Managed" DisplayName="Yönetilen Görüntü" Description="Hataları ayıklanacak yönetilebilir görüntü, tamamen yönetilen bir uygulamadır."/>
+	</EnumProperty>
+
+	<BoolProperty Name="AllowLocalNetworkLoopback" DisplayName="Yerel Ağ Geri Döngüsüne İzin Ver" F1Keyword="javascript.project.property.debugging.allowlocalnetworkloopback" Description="Windows Mağazası uygulamasında hata ayıklanırken, yerel hizmetleri, hata ayıklama ağ trafiğini ve aynı makine üzerinde bileşenlerle iletişim kurmak için yerel geri döngüyü kullanmaya izin verir.">
+	</BoolProperty>
+</Rule>

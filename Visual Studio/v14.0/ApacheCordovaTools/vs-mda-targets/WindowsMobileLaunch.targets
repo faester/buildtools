@@ -1,0 +1,13 @@
+﻿<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <PropertyPageSchema Include="$(MSBuildThisFileDirectory)$(LangName)\PhoneDevice81.xaml">
+      <Context>Project</Context>
+    </PropertyPageSchema>
+  </ItemGroup>
+  <ItemGroup>
+    <!-- Add your debugger to the list of available debuggers in the project property pages dialog. -->
+    <PropertyPageSchema Include="$(MSBuildThisFileDirectory)$(LangName)\WindowsMobileEmulator.xaml">
+      <Context>Project</Context>
+    </PropertyPageSchema>
+  </ItemGroup>
+</Project>

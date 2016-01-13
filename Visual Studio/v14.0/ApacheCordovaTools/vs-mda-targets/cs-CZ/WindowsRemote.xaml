@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Copyright, Microsoft Corporation, All rights reserved.-->
+<Rule Name="WindowsRemote" DisplayName="Vzdálený počítač" PageTemplate="debugger" Description="Možnosti vzdáleného ladicího programu" xmlns:sys="clr-namespace:System;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns="http://schemas.microsoft.com/build/2009/properties">
+
+    <Rule.DataSource>
+		<DataSource Persistence="UserFile" HasConfigurationCondition="true"/>
+    </Rule.DataSource>
+	
+	<StringProperty Name="DebuggerMachineName" DisplayName="Název počítače" F1Keyword="javascript.project.property.debugging.machinename" Description="Určuje název počítače při použití vzdáleného ladění.  Pomocí rozevíracího seznamu vyhledejte okolní počítače.">
+		<StringProperty.DataSource>
+			<DataSource Persistence="UserFile" HasConfigurationCondition="true"/>
+		</StringProperty.DataSource>
+		<StringProperty.ValueEditors>
+			<ValueEditor EditorType="RemoteDebuggerOptionsPropertyEditor" DisplayName="&lt;Umístění...&gt;">
+				<ValueEditor.Metadata>
+					<NameValuePair Name="AuthenticationPropertyName" Value="RequireAuthentication"/>
+				</ValueEditor.Metadata>
+			</ValueEditor>
+		</StringProperty.ValueEditors>
+	</StringProperty>
+
+	<BoolProperty Name="DebuggerRequireAuthentication" DisplayName="Vyžadovat ověření" F1Keyword="javascript.project.property.debugging.requireauthentication" Description="Určuje, jestli se při ladění na vzdáleném zařízení vyžaduje ověření.">
+		<BoolProperty.DataSource>
+			<DataSource Persistence="UserFile" HasConfigurationCondition="true"/>
+		</BoolProperty.DataSource>
+	</BoolProperty>
+
+	<BoolProperty Name="AllowLocalNetworkLoopback" DisplayName="Povolit zpětnou smyčku místní sítě" F1Keyword="javascript.project.property.debugging.allowlocalnetworkloopback" Description="Při ladění aplikace pro Windows Store umožňuje použití místních služeb, ladění síťových přenosů a použití místní zpětné smyčky pro komunikaci se součástmi ve stejném počítači.">
+	</BoolProperty>
+</Rule>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Rule Name="iOSEmulatoriPadRetina" DisplayName="Simulator - iPad Retina" PageTemplate="debugger" Description="Simulator - iPad Retina" xmlns="http://schemas.microsoft.com/build/2009/properties">
+  <Rule.DataSource>
+		<DataSource Persistence="UserFile" HasConfigurationCondition="true"/>
+  </Rule.DataSource>
+
+	<BoolProperty Name="AllowLocalNetworkLoopback" DisplayName="Autoriser le bouclage de réseau local" F1Keyword="javascript.project.property.debugging.allowlocalnetworkloopback" Description="Durant le débogage d'une application du Windows Store, vous permet d'utiliser des services locaux, de déboguer le trafic réseau et d'utiliser un bouclage local pour communiquer avec des composants sur le même ordinateur.">
+	</BoolProperty>
+</Rule>

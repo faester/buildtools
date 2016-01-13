@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Rule Name="iOSEmulatoriPadAir" DisplayName="模拟器 - iPad Air" PageTemplate="debugger" Description="模拟器 - iPad Air" xmlns="http://schemas.microsoft.com/build/2009/properties">
+  <Rule.DataSource>
+		<DataSource Persistence="UserFile" HasConfigurationCondition="true"/>
+  </Rule.DataSource>
+
+	<BoolProperty Name="AllowLocalNetworkLoopback" DisplayName="允许本地网络环回" F1Keyword="javascript.project.property.debugging.allowlocalnetworkloopback" Description="在调试 Windows 应用商店应用时，你可以使用本地服务、调试网络通讯以及使用本地环回来与同一台计算机上的组件进行通信。">
+	</BoolProperty>
+</Rule>

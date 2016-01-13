@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Rule Name="AndroidEmulator" DisplayName="Google Android Emulator" PageTemplate="debugger" Description="Google Android Emulator Debugger Options" xmlns:sys="clr-namespace:System;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns="http://schemas.microsoft.com/build/2009/properties">
+    <Rule.Metadata>
+        <sys:Guid x:Key="DebugTargetTypeCommandGuid">FEEA6E9D-77D8-423F-9EDE-3970CBB76125</sys:Guid>
+        <sys:UInt32 x:Key="DebugTargetTypeCommandId">0x400</sys:UInt32>
+        <sys:String x:Key="DebugTargetDropdownEnum">AndroidEmulatorID</sys:String>
+    </Rule.Metadata>
+
+    <Rule.DataSource>
+        <DataSource Persistence="UserFile" HasConfigurationCondition="true"/>
+    </Rule.DataSource>
+
+    <Rule.Categories>
+        <Category Name="StartOptions" DisplayName="Start Options" Description="Start Options"/>
+    </Rule.Categories>
+
+    <DynamicEnumProperty Name="AndroidEmulatorID" DisplayName="Debug Target" EnumProvider="MDDAndroidEmulators"
+                        Description="Specifies the emulator to use for debugging. If no emulators are installed please use 'Download Emulator 8.1...' in the debug target dropdown."
+                        F1Keyword="javascript.project.property.debugging.debuggertarget"/>
+
+    <BoolProperty
+    Name="AllowLocalNetworkLoopback"
+    DisplayName="Allow Local Network Loopback"
+    F1Keyword="javascript.project.property.debugging.allowlocalnetworkloopback"
+    Description="When debugging a Windows Store app, allows you to use local services, debug network traffic, and use a local loopback for communicating with components on the same machine.">
+    </BoolProperty>
+</Rule>

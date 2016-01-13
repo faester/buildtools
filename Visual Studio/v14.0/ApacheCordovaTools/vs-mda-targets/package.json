@@ -1,0 +1,10 @@
+{
+  "name": "vs-mda-targets",
+  "version": "0.1.40",
+  "description": "MSBuild resources for building Apache Cordova apps from a single project using HTML and JavaScript that targets Android, iOS, Windows, and Windows Phone.",
+  "main": "",
+  "author": {
+    "name": "Microsoft",
+    "email": ""
+  }
+}

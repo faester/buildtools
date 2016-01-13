@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Copyright, Microsoft Corporation, All rights reserved.-->
+<Rule Name="WindowsRemote" DisplayName="リモート コンピューター" PageTemplate="debugger" Description="リモート デバッガーのオプション" xmlns:sys="clr-namespace:System;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns="http://schemas.microsoft.com/build/2009/properties">
+
+    <Rule.DataSource>
+		<DataSource Persistence="UserFile" HasConfigurationCondition="true"/>
+    </Rule.DataSource>
+	
+	<StringProperty Name="DebuggerMachineName" DisplayName="コンピューター名" F1Keyword="javascript.project.property.debugging.machinename" Description="リモートでデバッグする場合に使用するコンピューターの名前を指定します。ドロップダウンを使用して近くのコンピューターを特定してください。">
+		<StringProperty.DataSource>
+			<DataSource Persistence="UserFile" HasConfigurationCondition="true"/>
+		</StringProperty.DataSource>
+		<StringProperty.ValueEditors>
+			<ValueEditor EditorType="RemoteDebuggerOptionsPropertyEditor" DisplayName="&lt;検索...&gt;">
+				<ValueEditor.Metadata>
+					<NameValuePair Name="AuthenticationPropertyName" Value="RequireAuthentication"/>
+				</ValueEditor.Metadata>
+			</ValueEditor>
+		</StringProperty.ValueEditors>
+	</StringProperty>
+
+	<BoolProperty Name="DebuggerRequireAuthentication" DisplayName="認証が必要" F1Keyword="javascript.project.property.debugging.requireauthentication" Description="リモート デバイスでデバッグするときに認証が必要かどうかを指定します。">
+		<BoolProperty.DataSource>
+			<DataSource Persistence="UserFile" HasConfigurationCondition="true"/>
+		</BoolProperty.DataSource>
+	</BoolProperty>
+
+	<BoolProperty Name="AllowLocalNetworkLoopback" DisplayName="ローカル ネットワーク ループバックの許可" F1Keyword="javascript.project.property.debugging.allowlocalnetworkloopback" Description="Windows ストア アプリをデバッグする際に、ローカル サービスの使用、ネットワーク トラフィックのデバッグ、およびローカル ループバックの使用 (同一コンピューター上のコンポーネントとの通信用) を許可します。">
+	</BoolProperty>
+</Rule>

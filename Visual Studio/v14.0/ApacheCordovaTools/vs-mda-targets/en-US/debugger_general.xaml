@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--Copyright, Microsoft Corporation, All rights reserved.-->
+<Rule Name="DebuggerGeneralProperties"
+      DisplayName="Debugger General Properties"
+      Description="General Debugger options"
+      xmlns="http://schemas.microsoft.com/build/2009/properties">
+	<Rule.DataSource>
+		<DataSource Persistence="UserFile"/>
+	</Rule.DataSource>
+
+	<StringProperty Name="SymbolsPath" DisplayName="Symbol Search Path"
+                  Description="The search path used by the debugger to locate symbols.">
+	</StringProperty>
+
+	<StringProperty Name="DebuggerFlavor" Visible="false"
+                  Description="The debug rule selected as the active debugger.">
+	</StringProperty>
+
+	<EnumProperty Name="ImageClrType" Visible="false"
+                  Description="The 'hidden' property we pass to debuggers to let them know if this is a managed project.">
+		<EnumProperty.DataSource>
+			<DataSource Persistence="UserFile" HasConfigurationCondition="true" PersistedName="_TargetImageClrType" />
+		</EnumProperty.DataSource>
+		<EnumValue Name="Native" DisplayName="Native Image" Description="The executable image to debug is a fully native application." />
+		<EnumValue Name="Mixed" DisplayName="Mixed Image" Description="The executable image to debug is a mixture of native and managed code." />
+		<EnumValue Name="Managed" DisplayName="Managed Image" Description="The executable image to debug is a fully managed application." />
+	</EnumProperty>
+
+	<BoolProperty
+    Name="AllowLocalNetworkLoopback"
+    DisplayName="Allow Local Network Loopback"
+    F1Keyword="javascript.project.property.debugging.allowlocalnetworkloopback"
+    Description="When debugging a Windows Store app, allows you to use local services, debug network traffic, and use a local loopback for communicating with components on the same machine.">
+	</BoolProperty>
+</Rule>

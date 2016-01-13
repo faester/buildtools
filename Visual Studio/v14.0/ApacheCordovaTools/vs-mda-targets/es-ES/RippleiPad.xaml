@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Rule Name="RippleiPad" DisplayName="Ripple - iPad" PageTemplate="debugger" Description="Opciones de Ripple - iPad" xmlns="http://schemas.microsoft.com/build/2009/properties">
+  <Rule.DataSource>
+		<DataSource Persistence="UserFile" HasConfigurationCondition="true"/>
+  </Rule.DataSource>
+
+	<BoolProperty Name="AllowLocalNetworkLoopback" DisplayName="Permitir bucle invertido de la red local" F1Keyword="javascript.project.property.debugging.allowlocalnetworkloopback" Description="Al depurar una aplicación de la Tienda Windows, puede usar servicios locales, depurar el tráfico de red y usar un bucle invertido local para comunicarse con los componentes de la misma máquina.">
+	</BoolProperty>
+</Rule>

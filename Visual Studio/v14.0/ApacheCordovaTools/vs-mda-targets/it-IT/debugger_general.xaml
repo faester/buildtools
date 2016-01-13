@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Copyright, Microsoft Corporation, All rights reserved.-->
+<Rule Name="DebuggerGeneralProperties" DisplayName="Proprietà generali del debugger" Description="Opzioni generali del debugger" xmlns="http://schemas.microsoft.com/build/2009/properties">
+	<Rule.DataSource>
+		<DataSource Persistence="UserFile"/>
+	</Rule.DataSource>
+
+	<StringProperty Name="SymbolsPath" DisplayName="Percorso di ricerca dei simboli" Description="Percorso di ricerca usato dal debugger per individuare i simboli.">
+	</StringProperty>
+
+	<StringProperty Name="DebuggerFlavor" Visible="false" Description="Regola di debug specificata come debugger attivo.">
+	</StringProperty>
+
+	<EnumProperty Name="ImageClrType" Visible="false" Description="Proprietà 'hidden' passata ai debugger per indicare se il progetto è gestito.">
+		<EnumProperty.DataSource>
+			<DataSource Persistence="UserFile" HasConfigurationCondition="true" PersistedName="_TargetImageClrType"/>
+		</EnumProperty.DataSource>
+		<EnumValue Name="Native" DisplayName="Immagine nativa" Description="L'immagine eseguibile di cui eseguire il debug è un'applicazione completamente nativa."/>
+		<EnumValue Name="Mixed" DisplayName="Immagine mista" Description="L'immagine eseguibile di cui eseguire il debug è una combinazione di codice nativo e codice gestito."/>
+		<EnumValue Name="Managed" DisplayName="Immagine gestita" Description="L'immagine eseguibile di cui eseguire il debug è un'applicazione completamente gestita."/>
+	</EnumProperty>
+
+	<BoolProperty Name="AllowLocalNetworkLoopback" DisplayName="Consenti loopback della rete locale" F1Keyword="javascript.project.property.debugging.allowlocalnetworkloopback" Description="Quando si esegue il debug di un'app di Windows Store, consente di usare servizi locali, eseguire il debug del traffico di rete e usare un loopback locale per le comunicazioni con i componenti nello stesso computer.">
+	</BoolProperty>
+</Rule>

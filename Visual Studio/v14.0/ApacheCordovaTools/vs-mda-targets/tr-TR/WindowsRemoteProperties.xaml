@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Copyright, Microsoft Corporation, All rights reserved.-->
+<Rule Name="WindowsRemoteProperties" DisplayName="Başlangıç Seçenekleri" PageTemplate="generic" Order="300" Description="Başlangıç Ayarları Seçenekleri" xmlns:sys="clr-namespace:System;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns="http://schemas.microsoft.com/build/2009/properties">
+
+	<Rule.Metadata>
+		<sys:Guid x:Key="DebugTargetTypeCommandGuid">FEEA6E9D-77D8-423F-9EDE-3970CBB76125</sys:Guid>
+		<sys:UInt32 x:Key="DebugTargetTypeCommandId">0x400</sys:UInt32>
+	</Rule.Metadata>
+
+	<Rule.DataSource>
+		<DataSource Persistence="UserFile" HasConfigurationCondition="true"/>
+	</Rule.DataSource>
+
+	<Rule.Categories>
+		<Category Name="StartOptions" DisplayName="Başlangıç Seçenekleri" Description="Başlangıç Seçenekleri"/>
+		<Category Name="RemoteOptions" DisplayName="Uzak Seçenekler" Description="Uzak Seçenekler"/>
+	</Rule.Categories>
+
+	<BoolProperty Name="LaunchApplication" DisplayName="Uygulamayı Başlat" Category="StartOptions" F1Keyword="javascript.project.property.debugging.launchapplication" Description="Uygulamanın hemen mi başlatılacağını yoksa çalışmaya başladığında uygulamada hata ayıklama işleminin mi bekleneceğini belirtir."/>
+
+	<BoolProperty Name="AllowLocalNetworkLoopback" DisplayName="Yerel Ağ Geri Döngüsüne İzin Ver" Category="StartOptions" F1Keyword="javascript.project.property.debugging.allowlocalnetworkloopback" Description="Windows Mağazası uygulamasında hata ayıklanırken, yerel hizmetleri, hata ayıklama ağ trafiğini ve aynı makine üzerinde bileşenlerle iletişim kurmak için yerel geri döngüyü kullanmaya izin verir."/>
+
+	<EnumProperty Name="DebuggerType" DisplayName="Hata Ayıklayıcı Türü" Category="StartOptions" F1Keyword="javascript.project.property.debugging.debuggertype" Description="Etkinleştirilecek hata ayıklayıcıyı belirtir. Karma olarak ayarlandığında yönetilen ve yerel kod için hata ayıklayıcılar çalıştırılır.">
+		<EnumValue Name="NativeOnly" DisplayName="Yalnızca Yerel" Description="Yalnızca Yerel"/>
+		<EnumValue Name="ManagedOnly" DisplayName="Yalnızca Yönetilen" Description="Yalnızca Yönetilen"/>
+		<EnumValue Name="Script" DisplayName="Yalnızca Betik" Description="Yalnızca Betik"/>
+		<EnumValue Name="Mixed" DisplayName="Karma (Yönetilen ve Yerel)" Description="Karma (Yönetilen ve Yerel)"/>
+		<EnumProperty.Metadata>
+			<NameValuePair Name="IsDebugType" Value="true"/>
+		</EnumProperty.Metadata>
+	</EnumProperty>
+
+	<StringProperty Name="DebuggerMachineName" DisplayName="Makine Adı" Category="RemoteOptions" F1Keyword="javascript.project.property.debugging.machinename" Description="Uzaktan hata ayıklanırken kullanılacak makine adını belirtir. Yakındaki makineleri bulmak için açılır listeyi kullanın.">
+		<StringProperty.ValueEditors>
+			<ValueEditor EditorType="RemoteDebuggerOptionsPropertyEditor" DisplayName="&lt;Bul...&gt;">
+				<ValueEditor.Metadata>
+					<NameValuePair Name="AuthenticationPropertyName" Value="RequireAuthentication"/>
+				</ValueEditor.Metadata>
+			</ValueEditor>
+		</StringProperty.ValueEditors>
+	</StringProperty>
+
+	<BoolProperty Name="DebuggerRequireAuthentication" DisplayName="Kimlik Doğrulama Gerektir" Category="RemoteOptions" F1Keyword="javascript.project.property.debugging.requireauthentication" Description="Uzak cihazlar üzerinde hata ayıklanırken kimlik doğrulamanın gerekip gerekmeyeceğini belirtir."/>
+</Rule>

@@ -1,0 +1,386 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <UsingTask TaskName="RunMdaInstall" AssemblyFile="Microsoft.VisualStudio.MultiDeviceHybridApps.MdaBuildTasks.dll"/>
+  <UsingTask TaskName="MdaTrackJsChanges" AssemblyFile="Microsoft.VisualStudio.MultiDeviceHybridApps.MdaBuildTasks.dll"/>
+  <UsingTask TaskName="CreateBuildInfoMetadata" AssemblyFile="Microsoft.VisualStudio.MultiDeviceHybridApps.MdaBuildTasks.dll"/>
+  <UsingTask TaskName="ExportRemoteIosCertificates" AssemblyFile="Microsoft.VisualStudio.MultiDeviceHybridApps.MdaBuildTasks.dll"/>
+  <UsingTask TaskName="MdaVsCli" AssemblyFile="Microsoft.VisualStudio.MultiDeviceHybridApps.MdaBuildTasks.dll"/>  
+  <UsingTask TaskName="MdaError" AssemblyFile="Microsoft.VisualStudio.MultiDeviceHybridApps.MdaBuildTasks.dll"/>
+  <UsingTask TaskName="MdaVerifySetup" AssemblyFile="Microsoft.VisualStudio.MultiDeviceHybridApps.MdaBuildTasks.dll"/>
+
+  <PropertyGroup>
+    <UAPSDKPath>$([Microsoft.Build.Utilities.ToolLocationHelper]::GetPlatformSDKLocation("Windows", "10.0"))</UAPSDKPath>
+    <IsWindowsUAPSupported>false</IsWindowsUAPSupported>
+    <IsWindowsUAPSupported Condition=" '$(UAPSDKPath)' != '' ">true</IsWindowsUAPSupported>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <LaunchApplication Condition=" '$(LaunchApplication)' == '' ">true</LaunchApplication>
+    <AllowLocalNetworkLoopback Condition=" '$(AllowLocalNetworkLoopback)' == '' ">true</AllowLocalNetworkLoopback>
+    <DebuggerType Condition=" '$(DebuggerType)' == '' ">Script</DebuggerType>
+    <RequireAuthentication Condition=" '$(RequireAuthentication)' == '' ">true</RequireAuthentication>
+    <OutputPath Condition=" '$(OutputPath)' == '' and '$(Platform)' != 'AnyCPU' ">bin\$(Platform)\$(Configuration)</OutputPath>
+    <OutputPath Condition=" '$(OutputPath)' == '' and '$(Platform)' == 'AnyCPU' ">bin\$(Configuration)</OutputPath>
+    <BaseIntermediateOutputPath>bld\</BaseIntermediateOutputPath>
+    <SuppressOutOfDateMessageOnBuild>true</SuppressOutOfDateMessageOnBuild>
+    <DebugSymbols>false</DebugSymbols>
+    <WinRTReferenceTabs>TAB_SDK_EXTENSIONS</WinRTReferenceTabs>
+    <SkipCopyBuildProduct>true</SkipCopyBuildProduct>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <IsWindowsPlatform>false</IsWindowsPlatform>
+    <IsWindowsPlatform Condition="$(Platform) == 'Windows-AnyCPU' OR $(Platform) == 'Windows-x86' OR $(Platform) == 'Windows-x64' OR $(Platform) == 'Windows-ARM'">true</IsWindowsPlatform>
+
+    <PlatformTarget Condition="'$(PlatformTarget)' ==''">$(Platform)</PlatformTarget>
+    <DebuggerFlavor Condition=" '$(DebuggerFlavor)' == '' and '$(Platform)' != 'ARM' and '$(Platform)' != 'AnyCPU' and '$(TargetPlatformIdentifier)' == 'WindowsPhoneApp' ">WindowsPhoneEmulatorDebugger</DebuggerFlavor>
+    <DebuggerFlavor Condition=" '$(DebuggerFlavor)' == '' and '$(Platform)' == 'AnyCPU' and '$(TargetPlatformIdentifier)' == 'WindowsPhoneApp'">WindowsPhoneEmulatorDebugger</DebuggerFlavor>
+    <DebuggerFlavor Condition=" '$(DebuggerFlavor)' == '' and '$(Platform)' == 'ARM' and '$(TargetPlatformIdentifier)' == 'WindowsPhoneApp'">AppHostDeviceDebugger</DebuggerFlavor>
+    <DebuggerFlavor Condition=" '$(DebuggerFlavor)' == '' and '$(Platform)' != 'ARM' and '$(TargetPlatformIdentifier)' != 'WindowsPhoneApp'">AppHostLocalDebugger</DebuggerFlavor>
+    <DebuggerFlavor Condition=" '$(DebuggerFlavor)' == '' and '$(Platform)' == 'ARM' ">AppHostRemoteDebugger</DebuggerFlavor>
+
+    <!-- Set a default DebuggerFlavor value in case all the other SETs failed -->
+    <DebuggerFlavor Condition=" '$(DebuggerFlavor)' == ''">AppHostLocalDebugger</DebuggerFlavor>
+
+    <WindowsAppContainer>true</WindowsAppContainer>
+    <AppxPackage>true</AppxPackage>
+
+    <TargetPlatformIdentifier>Windows</TargetPlatformIdentifier>
+    <TargetPlatformVersion>8.1</TargetPlatformVersion>
+
+    <DefaultReferenceGroup>Implicit (Apache Cordova)</DefaultReferenceGroup>
+  
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectCapability Include="Cordova"/>
+    <ProjectCapability Include="FileSystemBasedCordovaProject"/>
+    <ProjectCapability Include="HtmlMultiDeviceDevelopment"/>
+    <ProjectCapability Include="MicrosoftHtmlMultiDeviceDevelopment"/>
+    <!-- DependencyPackageManagement is the capability to enable the DependencyNode from the WTE package -->
+    <ProjectCapability Include="DependencyPackageManagement"/>
+  </ItemGroup>
+    
+  <!-- 'Windows Phone' platform should only be used for backward compatibility. Platform was renamed to 'Windows Phone 8'. -->
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\ApacheCordovaTools\vs-mda-targets\PhoneLaunch.targets" Condition="$(Platform) == 'Windows Phone' OR $(Platform) == 'Windows Phone 8'" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\ApacheCordovaTools\vs-mda-targets\AndroidLaunch.targets" Condition="$(Platform) == 'Android'" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\ApacheCordovaTools\vs-mda-targets\iOSLaunch.targets" Condition="$(Platform) == 'iOS'" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\ApacheCordovaTools\vs-mda-targets\WindowsLaunch.targets" Condition="'$(IsWindowsPlatform)' == 'true'" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\ApacheCordovaTools\vs-mda-targets\WindowsMobileLaunch.targets" Condition=" '$(IsWindowsPlatform)' == 'true' OR '$(Platform)' == 'Windows Phone (Universal)' "/>
+
+  <PropertyGroup>
+    <JSTargetDir>$(VSToolsPath)\JavaScript</JSTargetDir>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PropertyPageSchema Include="$(JSTargetDir)\$(LangName)\ProjectItemsSchema.xaml;"/>
+
+    <PropertyPageSchema Include="$(JSTargetDir)\$(LangName)\DebuggerGeneral.xaml;">
+      <Context>Project</Context>
+    </PropertyPageSchema>
+
+    <PropertyPageSchema Include="$(JSTargetDir)\SCC.xaml;">
+      <Context>Invisible</Context>
+    </PropertyPageSchema>
+
+    <PropertyPageSchema Include="$(JSTargetDir)\$(LangName)\General.BrowseObject.xaml;">
+      <Context>BrowseObject</Context>
+    </PropertyPageSchema>
+
+    <PropertyPageSchema Include="$(JSTargetDir)\Folder.xaml;
+                                 $(JSTargetDir)\$(LangName)\None.xaml;
+                                 $(MSBuildThisFileDirectory)\Content.xaml;
+                                 $(JSTargetDir)\$(LangName)\AppxManifest.xaml;
+                                 $(JSTargetDir)\$(LangName)\PRIResource.xaml;">
+      <Context>File;BrowseObject</Context>
+    </PropertyPageSchema>
+
+    <PropertyPageSchema Include="$(JSTargetDir)\$(LangName)\AssemblyReference.xaml;
+                                 $(JSTargetDir)\$(LangName)\ProjectReference.xaml;
+                                 $(JSTargetDir)\$(LangName)\SDKReference.xaml;
+                                 $(JSTargetDir)\$(LangName)\ResolvedSDKReferenceProps.xaml;
+                                 $(JSTargetDir)\$(LangName)\ExpandedSDKNode.xaml;">
+      <Context>;BrowseObject</Context>
+    </PropertyPageSchema>
+
+    <PropertyPageSchema Include="$(JSTargetDir)\$(LangName)\ResolvedAssemblyReference.xaml;
+                                 $(JSTargetDir)\$(LangName)\ResolvedProjectReference.xaml;
+                                 $(JSTargetDir)\$(LangName)\ResolvedExpandedSDKReference.xaml;">
+      <Context>ProjectSubscriptionService;BrowseObject</Context>
+    </PropertyPageSchema>
+
+    <PropertyPageSchema Include="$(JSTargetDir)\$(LangName)\ResolvedSDKReference.xaml;
+                                 $(JSTargetDir)\DeployableItemPath.xaml;">
+      <Context>ProjectSubscriptionService</Context>
+    </PropertyPageSchema>
+
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectCapability Include="JavaScript;JavaScriptProject" />
+    <ProjectCapability Include="OutputGroups;AllTargetOutputGroups;VisualStudioWellKnownOutputGroups" />
+    <ProjectCapability Include="SingleFileGenerators" />
+    <ProjectCapability Include="AllTargetOutputGroups;VisualStudioWellKnownOutputGroups" />
+    <ProjectCapability Include="SourceItemsFromImports;SharedImports" />
+    <ProjectCapability Include="RequiresSharedAssetsProjectLoadForOpenDocuments" />
+    <ProjectCapability Include="ProjectConfigurationsDeclaredAsItems" />
+  </ItemGroup>
+
+  <!-- Integrating with App Package creation task -->
+  <PropertyGroup>
+    <IncludeCopyWinMDArtifactsOutputGroup>true</IncludeCopyWinMDArtifactsOutputGroup>
+    <IncludeBuiltProjectOutputGroup>false</IncludeBuiltProjectOutputGroup>
+    <IncludeDebugSymbolsProjectOutputGroup>false</IncludeDebugSymbolsProjectOutputGroup>
+    <IncludeDocumentationProjectOutputGroup>false</IncludeDocumentationProjectOutputGroup>
+    <IncludeSatelliteDllsProjectOutputGroup>false</IncludeSatelliteDllsProjectOutputGroup>
+    <IncludeSourceFilesProjectOutputGroup>false</IncludeSourceFilesProjectOutputGroup>
+    <IncludeSGenFilesOutputGroup>false</IncludeSGenFilesOutputGroup>
+    <IncludeCopyLocalFilesOutputGroup>true</IncludeCopyLocalFilesOutputGroup>
+    <IncludeComFilesOutputGroup>false</IncludeComFilesOutputGroup>
+    <IncludeCustomOutputGroupForPackaging>false</IncludeCustomOutputGroupForPackaging>
+    <IncludeSDKRedistOutputGroup>true</IncludeSDKRedistOutputGroup>
+    <SynthesizeLinkMetadata Condition=" '$(HasSharedItems)' == 'true' ">true</SynthesizeLinkMetadata>
+    <OneAppCapabilities>Application</OneAppCapabilities>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <DefaultContentType Condition="$(DefaultContentType) == ''">Default</DefaultContentType>
+    <!-- We don't target any framework, so clear what the Microsoft.Common.targets sets. -->
+    <AddAdditionalExplicitAssemblyReferences>false</AddAdditionalExplicitAssemblyReferences>
+  </PropertyGroup>
+
+  <Import Project="$(MSBuildBinPath)\Microsoft.Common.targets" />
+
+  <PropertyGroup>
+    <AvailablePlatforms>Any CPU,x86,x64,ARM</AvailablePlatforms>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <ProjectUISubcaption Condition=" '$(TargetPlatformVersion)' == '8.0' and  '$(TargetPlatformIdentifier)' != '' ">$(TargetPlatformIdentifier) 8</ProjectUISubcaption>
+  </PropertyGroup>
+
+  <!-- Overriding targets which when absent cause warnings from common targets -->
+  <Target Name="CoreCompile" />
+  <Target Name="CreateManifestResourceNames" />
+
+  <ItemGroup>
+    <PropertyPageSchema Include="$(JSTargetDir)\$(LangName)\General.neutral.xaml;">
+      <Context>Project</Context>
+    </PropertyPageSchema>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectCapability Include="AllTargetOutputGroups;VisualStudioWellKnownOutputGroups" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <AvailablePlatforms>Android,iOS,Windows-AnyCPU,Windows-x64,Windows-x86,Windows-ARM,Windows Phone,Windows Phone 8,Windows Phone (Universal)</AvailablePlatforms>
+    <OsVersion>$(registry:HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion@CurrentVersion)</OsVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <MDACpuSpecificPlatform Include="Windows-AnyCPU" />
+    <MDACpuSpecificPlatform Include="Windows-x64" />
+    <MDACpuSpecificPlatform Include="Windows-x86" />
+    <MDACpuSpecificPlatform Include="Windows-ARM" />
+  </ItemGroup>
+
+  <!-- Build info metadata items. -->
+  <ItemGroup Label="BuildInfoMetadata">
+
+    <BuildInfoMetadata Include="VisualStudio">
+      <Version>$(VisualStudioVersion)</Version>
+    </BuildInfoMetadata>
+
+    <BuildInfoMetadata Include="VisualStudioEdition"
+                       Condition="'$(VisualStudioEdition)' != ''">
+      <Value>$(VisualStudioEdition)</Value>
+    </BuildInfoMetadata>
+
+    <BuildInfoMetadata Include="$(ComSpec)">
+      <Name>OperatingSystem</Name>
+    </BuildInfoMetadata>
+
+    <BuildInfoMetadata Include="ProjectGUID"
+                          Condition="'$(ProjectGUID)' != ''">
+      <Value>$(ProjectGUID)</Value>
+    </BuildInfoMetadata>
+
+  </ItemGroup>
+
+  <!-- Overriding targets which when absent cause warnings from common targets -->
+  <Target Name="BeforeBuild">
+  </Target>
+
+  <PropertyGroup>
+    <MDABuildDependsOn Condition="'$(DebuggerFlavor)' != '' AND '$(Platform)' == 'iOS'">$(MDABuildDependsOn)TrackJsChanges;</MDABuildDependsOn>
+    <BuildDependsOn Condition="'$(DebuggerFlavor)' != '' AND $(DebuggerFlavor.Substring(0,6)) != 'Ripple'">$(BuildDependsOn);BuildOnlySettings;BuildMDA</BuildDependsOn>
+    <BuildDependsOn Condition="'$(DebuggerFlavor)' != '' AND $(DebuggerFlavor.Substring(0,6)) == 'Ripple'">$(BuildDependsOn);BuildOnlySettings;BuildRipple</BuildDependsOn>
+    <MDACustomErrorRegEx>Package name must look like: </MDACustomErrorRegEx>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <MdaVsCliProjectDir Condition="'$(MdaVsCliProjectDir)' == ''">.</MdaVsCliProjectDir>
+  </PropertyGroup>
+
+  <Target Name="CoreBuild" />
+
+  <Target Name="BuildMDA" DependsOnTargets="$(MDABuildDependsOn)EnsureNodeJsRequirementsAreAtCorrectVersion;">
+    <ItemGroup>
+      <BuildMDACpuSpecificPlatform Include="@(MDACpuSpecificPlatform)" Condition=" '%(Identity)' == '$(Platform)' " />
+    </ItemGroup>
+
+    <CreateBuildInfoMetadata Condition=" '$(Platform)' == 'android' AND '$(TelemetryEnabled)' == 'True' "
+                             TargetPath="$(OutputPath)VSBuildInfo.xml"
+                             OutputFormat="Xml"
+                             BuildInfoMetadata="@(BuildInfoMetadata)"/>
+
+    <CreateBuildInfoMetadata Condition=" '@(BuildMDACpuSpecificPlatform)' != '' AND '$(TelemetryEnabled)' == 'True'"
+                             TargetPath="$(OutputPath)Microsoft.AppxPackage.Metadata.Overrides.props"
+                             OutputFormat="MSBuild"
+                             BuildInfoMetadata="@(BuildInfoMetadata)"/>
+
+    <!-- Using ToolTask for CPU specific platforms (all Windows, such as Windows-AnyCPU) we need to include the cpuType as an option on the command line that launches the process (reason is deep within the external build.) No need to pass in build server or build target -->
+    <MdaVsCli
+      NpmInstallDir="$(NpmInstallDir)"
+      Platform="$(Platform)"
+      ProjectDir="$(MdaVsCliProjectDir)"
+      Configuration ="$(Configuration)"
+      ProjectName ="$(ProjectName)"
+      Language ="$(LangName)"
+      Condition=" '@(BuildMDACpuSpecificPlatform)' != '' "
+      PackageName="vs-tac"
+      BuildVerbosity="$(BuildVerbosity)"
+  />
+
+    <!-- ToolTask for all other platforms -->
+    <MdaVsCli
+      NpmInstallDir="$(NpmInstallDir)"
+      Platform="$(Platform)"
+      ProjectDir="$(MdaVsCliProjectDir)"
+      Configuration ="$(Configuration)"
+      ProjectName ="$(ProjectName)"
+      Language ="$(LangName)"
+      BuildServerUrl="$(iOSRemoteBuildServer)"
+      CertificateName="$(iOSCertificateName)"
+      BuildTarget="$(DebuggerFlavor)"
+      Condition=" '@(BuildMDACpuSpecificPlatform)' == '' "
+      PackageName="vs-tac"
+      BuildVerbosity="$(BuildVerbosity)"
+  />
+    
+  </Target>
+
+  <Target Name="BuildRipple" DependsOnTargets="$(MDABuildDependsOn)PrepareForRippleRequirements">
+    <!-- Launching Ripple emulator needs at least an empty platforms directory so let's make sure there is one -->
+    <MakeDir Directories="platforms"/>
+
+  </Target>
+
+  <Target Name="MDACleanAfterInstall">
+    <CallTarget Targets="CleanCordovaDeploy" />
+    <ItemGroup>
+      <_MdaDirectoriesToCleanup Include="$([System.IO.Directory]::GetDirectories('platforms'))" Condition=" EXISTS('platforms') " />
+    </ItemGroup>
+    <RemoveDir Directories="@(_MdaDirectoriesToCleanup)" Condition="Exists('%(Identity)')" ContinueOnError="false" />
+  </Target>
+
+  <Target Name="InstallMDA">
+    <RunMdaInstall MdaVsixDir="$(MDAVsixDir)"
+        NodeInstallPath="$(NodeJsDir)"
+        NpmInstallDir="$(NpmInstallDir)"
+        LangName="$(LangName)"
+        ProjectDir="$(MdaVsCliProjectDir)"
+        Configuration="$(Configuration)"
+        PackageName="vs-tac"
+        BuildVerbosity="$(BuildVerbosity)">
+      <Output TaskParameter="MdaInstallErrorCode" PropertyName="MDAInstallErrorCode"/>
+      <Output TaskParameter="CordovaVersion" PropertyName="CordovaVersion"/>
+    </RunMdaInstall>
+
+    <CallTarget Targets='MDACleanAfterInstall' Condition="$(MDAInstallErrorCode) == '-17'" />
+    <WriteLinesToFile Condition="$(MDAInstallErrorCode) == '-17' AND Exists('$(ProjectDir)\platforms')" File="$(ProjectDir)\platforms\cli-version" Lines="$(CordovaVersion)" Overwrite="true" Encoding="Unicode" ContinueOnError="true" />
+    <!-- Delete buildInfo.json file upon Cordova CLI change to make sure that the iOS platform is re-added to the project -->
+    <Delete Files="bld\iOS\Debug\buildInfo.json" Condition="$(MDAInstallErrorCode) == '-17' AND Exists('bld\iOS\Debug\buildInfo.json')" TreatErrorsAsWarnings="true"/>
+  </Target>
+
+  <Target Name="TrackJsChanges" DependsOnTargets="CompileTypescript">
+    <MdaTrackJsChanges GeneratedJavascript="@(GeneratedJavascript)" OutputFolder="$(ProjectDir)"></MdaTrackJsChanges>
+  </Target>
+
+  <Target Name="EnsureNodeJsRequirementsAreAtCorrectVersion">
+    <!-- Installs (if necessary) the supporting Nodejs module -->
+    <MdaVerifySetup Platform="$(Platform)" />
+    <CallTarget Targets='InstallMDA' />
+  </Target>
+
+  <Target Name="PrepareForRippleRequirements">
+    <CallTarget Targets="EnsureNodeJsRequirementsAreAtCorrectVersion"/>
+    <!-- Build: args to vs-cli are: buildCommand platform configuration projectSourceDir projectName optional_tscExePath -->
+
+    <MdaVsCli
+      NpmInstallDir="$(NpmInstallDir)"
+      Platform="$(Platform)"
+      ProjectDir="$(MdaVsCliProjectDir)"
+      Configuration ="$(Configuration)"
+      ProjectName ="$(ProjectName)"
+      Language ="$(LangName)"
+      BuildTarget="$(DebuggerFlavor)"
+      PackageName="vs-tac"
+      BuildVerbosity="$(BuildVerbosity)"
+      />
+  </Target>
+
+  <Target Name="AfterBuild">
+  </Target>
+
+  <!-- This tries to delete the bin directory in the CordovaDeploy project in the WP8 platform -->
+  <Target Name="CleanCordovaDeploy">
+    <ItemGroup>
+      <CordovaDeployDirs Include="$(ProjectDir)\platforms\wp8\cordova\lib\CordovaDeploy\CordovaDeploy\bin" />
+    </ItemGroup>
+
+    <!-- Treating the error as a warning allows us to specify our own error message later. -->
+    <RemoveDir Directories="@(CordovaDeployDirs)" ContinueOnError="true">
+      <Output TaskParameter="RemovedDirectories" ItemName="DeletedDirectories" />
+    </RemoveDir>
+
+    <MdaError Condition="@(CordovaDeployDirs) != @(DeletedDirectories)" ErrorCode="00505" ErrorName="ErrorWp8FoldersLocked"/>
+  </Target>
+
+  <Target Name="BeforeClean">
+    <CallTarget Targets="CleanCordovaDeploy" />
+
+    <Exec StdErrEncoding="utf-8" StdOutEncoding="utf-8" Command="platforms\android\cordova\clean.bat" Condition="Exists('platforms\android\cordova\clean.bat')"/>
+    <Exec StdErrEncoding="utf-8" StdOutEncoding="utf-8" Command="platforms\windows\cordova\clean.bat" Condition="Exists('platforms\windows\cordova\clean.bat')"/>
+    <Exec StdErrEncoding="utf-8" StdOutEncoding="utf-8" Command="platforms\wp8\cordova\clean.bat" Condition="Exists('platforms\wp8\cordova\clean.bat')"/>
+
+    <!-- Make sure we clean out any iOS Ripple builds as well -->
+    <ItemGroup>
+      <_MdaDirectoriesToCleanup Include="bld\iOS\$(Configuration)"/>
+      <_MdaDirectoriesToCleanup Include="bld\Ripple\iOS\$(Configuration)"/>
+      <_MdaDirectoriesToCleanup Include="bin\iOS\$(Configuration)"/>
+    </ItemGroup>
+
+    <RemoveDir Directories="@(_MdaDirectoriesToCleanup)" Condition="Exists('%(Identity)')" ContinueOnError="true" />
+  </Target>
+
+  <!-- Include the tsconfig.json file under scripts, and short-circuit the MSBuild variables -->
+  <PropertyGroup>
+    <TypeScriptBuildConfigurations>--project &quot;$(MSBuildProjectDirectory)\scripts&quot;</TypeScriptBuildConfigurations>
+  </PropertyGroup>
+
+  <Target Name="CompileTypeScript" Condition="'$(BuildingProject)' != 'false'" DependsOnTargets="PreComputeCompileTypeScript" Outputs="@(GeneratedJavascript)">
+    <VsTsc
+      ToolPath="$(TscToolPath)"
+      ToolExe="$(TscToolExe)"
+      Configurations="$(TypeScriptBuildConfigurations)"
+      FullPathsToFiles="@(TypeScriptCompile)"
+      YieldDuringToolExecution="$(TscYieldDuringToolExecution)"
+      OutFile="$(TypeScriptOutFile)"
+      OutDir="$(TypeScriptOutDir)"
+      ProjectDir="$(ProjectDir)"
+      ToolsVersion="$(TypeScriptToolsVersion)"
+      >
+      <Output TaskParameter="GeneratedJavascript" ItemName="GeneratedJavascript" />
+    </VsTsc>
+  </Target>
+</Project>

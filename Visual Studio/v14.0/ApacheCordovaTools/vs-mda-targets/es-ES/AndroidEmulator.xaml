@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Rule Name="AndroidEmulator" DisplayName="Emulador de Android de Google" PageTemplate="debugger" Description="Opciones del depurador del emulador de Android de Google" xmlns:sys="clr-namespace:System;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns="http://schemas.microsoft.com/build/2009/properties">
+    <Rule.Metadata>
+        <sys:Guid x:Key="DebugTargetTypeCommandGuid">FEEA6E9D-77D8-423F-9EDE-3970CBB76125</sys:Guid>
+        <sys:UInt32 x:Key="DebugTargetTypeCommandId">0x400</sys:UInt32>
+        <sys:String x:Key="DebugTargetDropdownEnum">AndroidEmulatorID</sys:String>
+    </Rule.Metadata>
+
+    <Rule.DataSource>
+        <DataSource Persistence="UserFile" HasConfigurationCondition="true"/>
+    </Rule.DataSource>
+
+    <Rule.Categories>
+        <Category Name="StartOptions" DisplayName="Opciones de inicio" Description="Opciones de inicio"/>
+    </Rule.Categories>
+
+    <DynamicEnumProperty Name="AndroidEmulatorID" DisplayName="Destino de depuración" EnumProvider="MDDAndroidEmulators" Description="Especifica el emulador que se va a usar para la depuración. Si no hay ningún emulador instalado, elija &quot;Descargar Emulator 8.1...&quot; en la lista desplegable del destino de depuración." F1Keyword="javascript.project.property.debugging.debuggertarget"/>
+
+    <BoolProperty Name="AllowLocalNetworkLoopback" DisplayName="Permitir bucle invertido de la red local" F1Keyword="javascript.project.property.debugging.allowlocalnetworkloopback" Description="Al depurar una aplicación de la Tienda Windows, puede usar servicios locales, depurar el tráfico de red y usar un bucle invertido local para comunicarse con los componentes de la misma máquina.">
+    </BoolProperty>
+</Rule>

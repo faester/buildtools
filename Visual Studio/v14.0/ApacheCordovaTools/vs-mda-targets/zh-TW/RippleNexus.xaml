@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Rule Name="RippleNexus" DisplayName="Ripple - Nexus (Galaxy)" PageTemplate="debugger" Description="Ripple - Nexus (Galaxy) 選項" xmlns="http://schemas.microsoft.com/build/2009/properties">
+    <Rule.DataSource>
+		<DataSource Persistence="UserFile" HasConfigurationCondition="true"/>
+    </Rule.DataSource>
+
+	<BoolProperty Name="AllowLocalNetworkLoopback" DisplayName="允許區域網路回送" F1Keyword="javascript.project.property.debugging.allowlocalnetworkloopback" Description="在偵錯 Windows 市集應用程式時，可讓您使用本機服務、偵錯網路流量，並且使用本機回送，與同一部電腦上的元件進行通訊。">
+	</BoolProperty>
+</Rule>

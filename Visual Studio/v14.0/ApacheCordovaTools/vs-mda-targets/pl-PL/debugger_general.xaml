@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Copyright, Microsoft Corporation, All rights reserved.-->
+<Rule Name="DebuggerGeneralProperties" DisplayName="Właściwości ogólne debugera" Description="Opcje ogólne debugera" xmlns="http://schemas.microsoft.com/build/2009/properties">
+	<Rule.DataSource>
+		<DataSource Persistence="UserFile"/>
+	</Rule.DataSource>
+
+	<StringProperty Name="SymbolsPath" DisplayName="Ścieżka wyszukiwania symbolu" Description="Ścieżka wyszukiwania używana przez debugera do lokalizowania symboli.">
+	</StringProperty>
+
+	<StringProperty Name="DebuggerFlavor" Visible="false" Description="Reguła debugowania wybrana jako aktywny debuger.">
+	</StringProperty>
+
+	<EnumProperty Name="ImageClrType" Visible="false" Description="Właściwość „hidden” jest przekazywana do debugera, aby poinformować go, czy jest to projekt zarządzany.">
+		<EnumProperty.DataSource>
+			<DataSource Persistence="UserFile" HasConfigurationCondition="true" PersistedName="_TargetImageClrType"/>
+		</EnumProperty.DataSource>
+		<EnumValue Name="Native" DisplayName="Obraz natywny" Description="Wykonywalny obraz do debugowania jest w pełni natywną aplikacją."/>
+		<EnumValue Name="Mixed" DisplayName="Obraz mieszany" Description="Wykonywalny obraz do debugowania jest połączeniem kodu natywnego i zarządzanego."/>
+		<EnumValue Name="Managed" DisplayName="Obraz zarządzany" Description="Wykonywalny obraz do debugowania jest w pełni zarządzaną aplikacją."/>
+	</EnumProperty>
+
+	<BoolProperty Name="AllowLocalNetworkLoopback" DisplayName="Zezwalaj na sprzężenie zwrotne sieci lokalnej" F1Keyword="javascript.project.property.debugging.allowlocalnetworkloopback" Description="Podczas debugowania aplikacji do Sklepu Windows umożliwia używanie usług lokalnych, debugowanie ruchu w sieci i używanie lokalnego sprzężenia zwrotnego do komunikowania się ze składnikami na tym samym komputerze.">
+	</BoolProperty>
+</Rule>

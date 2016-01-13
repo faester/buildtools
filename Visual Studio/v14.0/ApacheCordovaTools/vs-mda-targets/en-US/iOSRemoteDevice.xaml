@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Rule Name="iOSRemoteDevice"
+      DisplayName="Remote Device"
+      PageTemplate="debugger"
+      Description="Remote iOS device Options"
+      xmlns="http://schemas.microsoft.com/build/2009/properties">
+	<Rule.DataSource>
+		<DataSource Persistence="UserFile" HasConfigurationCondition="true"/>
+	</Rule.DataSource>
+</Rule>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Copyright, Microsoft Corporation, All rights reserved.-->
+<Rule Name="WindowsRemote" DisplayName="Komputer zdalny" PageTemplate="debugger" Description="Opcje debugera zdalnego" xmlns:sys="clr-namespace:System;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns="http://schemas.microsoft.com/build/2009/properties">
+
+    <Rule.DataSource>
+		<DataSource Persistence="UserFile" HasConfigurationCondition="true"/>
+    </Rule.DataSource>
+	
+	<StringProperty Name="DebuggerMachineName" DisplayName="Nazwa komputera" F1Keyword="javascript.project.property.debugging.machinename" Description="Określa nazwę maszyny do użycia podczas debugowania zdalnego. Użyj listy rozwijanej, aby znaleźć maszyny znajdujące się w pobliżu.">
+		<StringProperty.DataSource>
+			<DataSource Persistence="UserFile" HasConfigurationCondition="true"/>
+		</StringProperty.DataSource>
+		<StringProperty.ValueEditors>
+			<ValueEditor EditorType="RemoteDebuggerOptionsPropertyEditor" DisplayName="&lt;Zlokalizuj...&gt;">
+				<ValueEditor.Metadata>
+					<NameValuePair Name="AuthenticationPropertyName" Value="RequireAuthentication"/>
+				</ValueEditor.Metadata>
+			</ValueEditor>
+		</StringProperty.ValueEditors>
+	</StringProperty>
+
+	<BoolProperty Name="DebuggerRequireAuthentication" DisplayName="Wymagaj uwierzytelniania" F1Keyword="javascript.project.property.debugging.requireauthentication" Description="Określa, czy uwierzytelnianie jest wymagane do debugowania na urządzeniach zdalnych.">
+		<BoolProperty.DataSource>
+			<DataSource Persistence="UserFile" HasConfigurationCondition="true"/>
+		</BoolProperty.DataSource>
+	</BoolProperty>
+
+	<BoolProperty Name="AllowLocalNetworkLoopback" DisplayName="Zezwalaj na sprzężenie zwrotne sieci lokalnej" F1Keyword="javascript.project.property.debugging.allowlocalnetworkloopback" Description="Podczas debugowania aplikacji do Sklepu Windows umożliwia używanie usług lokalnych, debugowanie ruchu w sieci i używanie lokalnego sprzężenia zwrotnego do komunikowania się ze składnikami na tym samym komputerze.">
+	</BoolProperty>
+</Rule>

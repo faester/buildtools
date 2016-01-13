@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Copyright, Microsoft Corporation, All rights reserved.-->
+<Rule Name="WindowsRemoteProperties" DisplayName="Ustawienia uruchamiania" PageTemplate="generic" Order="300" Description="Opcje ustawień uruchamiania" xmlns:sys="clr-namespace:System;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns="http://schemas.microsoft.com/build/2009/properties">
+
+	<Rule.Metadata>
+		<sys:Guid x:Key="DebugTargetTypeCommandGuid">FEEA6E9D-77D8-423F-9EDE-3970CBB76125</sys:Guid>
+		<sys:UInt32 x:Key="DebugTargetTypeCommandId">0x400</sys:UInt32>
+	</Rule.Metadata>
+
+	<Rule.DataSource>
+		<DataSource Persistence="UserFile" HasConfigurationCondition="true"/>
+	</Rule.DataSource>
+
+	<Rule.Categories>
+		<Category Name="StartOptions" DisplayName="Opcje uruchamiania" Description="Opcje uruchamiania"/>
+		<Category Name="RemoteOptions" DisplayName="Opcje zdalne" Description="Opcje zdalne"/>
+	</Rule.Categories>
+
+	<BoolProperty Name="LaunchApplication" DisplayName="Uruchom aplikację" Category="StartOptions" F1Keyword="javascript.project.property.debugging.launchapplication" Description="Określa, czy natychmiast uruchomić aplikację, czy poczekać na debugowanie aplikacji po jej uruchomieniu."/>
+
+	<BoolProperty Name="AllowLocalNetworkLoopback" DisplayName="Zezwalaj na sprzężenie zwrotne sieci lokalnej" Category="StartOptions" F1Keyword="javascript.project.property.debugging.allowlocalnetworkloopback" Description="Podczas debugowania aplikacji do Sklepu Windows umożliwia używanie usług lokalnych, debugowanie ruchu w sieci i używanie lokalnego sprzężenia zwrotnego do komunikowania się ze składnikami na tym samym komputerze."/>
+
+	<EnumProperty Name="DebuggerType" DisplayName="Typ debugera" Category="StartOptions" F1Keyword="javascript.project.property.debugging.debuggertype" Description="Określa, który debuger włączyć. Wybór opcji Mieszany spowoduje wywołanie debugerów dla kodu zarządzanego i natywnego.">
+		<EnumValue Name="NativeOnly" DisplayName="Tylko natywny" Description="Tylko natywny"/>
+		<EnumValue Name="ManagedOnly" DisplayName="Tylko zarządzany" Description="Tylko zarządzany"/>
+		<EnumValue Name="Script" DisplayName="Tylko skrypt" Description="Tylko skrypt"/>
+		<EnumValue Name="Mixed" DisplayName="Mieszany (zarządzany i natywny)" Description="Mieszany (zarządzany i natywny)"/>
+		<EnumProperty.Metadata>
+			<NameValuePair Name="IsDebugType" Value="true"/>
+		</EnumProperty.Metadata>
+	</EnumProperty>
+
+	<StringProperty Name="DebuggerMachineName" DisplayName="Nazwa komputera" Category="RemoteOptions" F1Keyword="javascript.project.property.debugging.machinename" Description="Określa nazwę maszyny do użycia podczas debugowania zdalnego. Użyj listy rozwijanej, aby znaleźć maszyny znajdujące się w pobliżu.">
+		<StringProperty.ValueEditors>
+			<ValueEditor EditorType="RemoteDebuggerOptionsPropertyEditor" DisplayName="&lt;Zlokalizuj...&gt;">
+				<ValueEditor.Metadata>
+					<NameValuePair Name="AuthenticationPropertyName" Value="RequireAuthentication"/>
+				</ValueEditor.Metadata>
+			</ValueEditor>
+		</StringProperty.ValueEditors>
+	</StringProperty>
+
+	<BoolProperty Name="DebuggerRequireAuthentication" DisplayName="Wymagaj uwierzytelniania" Category="RemoteOptions" F1Keyword="javascript.project.property.debugging.requireauthentication" Description="Określa, czy uwierzytelnianie jest wymagane do debugowania na urządzeniach zdalnych."/>
+</Rule>

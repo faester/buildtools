@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Rule Name="iOSEmulatoriPadAir" DisplayName="シミュレーター - iPad Air" PageTemplate="debugger" Description="シミュレーター - iPad Air" xmlns="http://schemas.microsoft.com/build/2009/properties">
+  <Rule.DataSource>
+		<DataSource Persistence="UserFile" HasConfigurationCondition="true"/>
+  </Rule.DataSource>
+
+	<BoolProperty Name="AllowLocalNetworkLoopback" DisplayName="ローカル ネットワーク ループバックの許可" F1Keyword="javascript.project.property.debugging.allowlocalnetworkloopback" Description="Windows ストア アプリをデバッグする際に、ローカル サービスの使用、ネットワーク トラフィックのデバッグ、およびローカル ループバックの使用 (同一コンピューター上のコンポーネントとの通信用) を許可します。">
+	</BoolProperty>
+</Rule>

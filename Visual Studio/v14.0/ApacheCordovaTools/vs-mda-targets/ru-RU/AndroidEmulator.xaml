@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Rule Name="AndroidEmulator" DisplayName="Эмулятор Google Android" PageTemplate="debugger" Description="Параметры отладчика эмулятора Google Android" xmlns:sys="clr-namespace:System;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns="http://schemas.microsoft.com/build/2009/properties">
+    <Rule.Metadata>
+        <sys:Guid x:Key="DebugTargetTypeCommandGuid">FEEA6E9D-77D8-423F-9EDE-3970CBB76125</sys:Guid>
+        <sys:UInt32 x:Key="DebugTargetTypeCommandId">0x400</sys:UInt32>
+        <sys:String x:Key="DebugTargetDropdownEnum">AndroidEmulatorID</sys:String>
+    </Rule.Metadata>
+
+    <Rule.DataSource>
+        <DataSource Persistence="UserFile" HasConfigurationCondition="true"/>
+    </Rule.DataSource>
+
+    <Rule.Categories>
+        <Category Name="StartOptions" DisplayName="Параметры запуска" Description="Параметры запуска"/>
+    </Rule.Categories>
+
+    <DynamicEnumProperty Name="AndroidEmulatorID" DisplayName="Объект отладки" EnumProvider="MDDAndroidEmulators" Description="Задает эмулятор, используемый для отладки. Если эмуляторы не установлены, выберите &quot;Скачать эмулятор 8.1...&quot; в раскрывающемся списке объекта отладки." F1Keyword="javascript.project.property.debugging.debuggertarget"/>
+
+    <BoolProperty Name="AllowLocalNetworkLoopback" DisplayName="Разрешить петлевой адрес в локальной сети" F1Keyword="javascript.project.property.debugging.allowlocalnetworkloopback" Description="При отладке приложений Магазина Windows разрешает использовать локальные службы, отлаживать сетевой трафик и использовать локальные петлевые адреса для связи с компонентами на том же компьютере.">
+    </BoolProperty>
+</Rule>

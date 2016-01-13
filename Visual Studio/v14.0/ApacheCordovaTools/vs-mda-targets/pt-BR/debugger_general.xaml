@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Copyright, Microsoft Corporation, All rights reserved.-->
+<Rule Name="DebuggerGeneralProperties" DisplayName="Propriedades gerais do depurador" Description="Opções gerais de depurador" xmlns="http://schemas.microsoft.com/build/2009/properties">
+	<Rule.DataSource>
+		<DataSource Persistence="UserFile"/>
+	</Rule.DataSource>
+
+	<StringProperty Name="SymbolsPath" DisplayName="Caminho de Pesquisa de Símbolos" Description="O caminho de pesquisa usado pelo depurador para localizar os símbolos.">
+	</StringProperty>
+
+	<StringProperty Name="DebuggerFlavor" Visible="false" Description="A regra de depuração selecionada como o depurador ativo.">
+	</StringProperty>
+
+	<EnumProperty Name="ImageClrType" Visible="false" Description="A propriedade 'oculta' que passamos aos depuradores para que eles saibam se este é um projeto gerenciado.">
+		<EnumProperty.DataSource>
+			<DataSource Persistence="UserFile" HasConfigurationCondition="true" PersistedName="_TargetImageClrType"/>
+		</EnumProperty.DataSource>
+		<EnumValue Name="Native" DisplayName="Imagem Nativa" Description="A imagem executável para depurar é um aplicativo totalmente nativo."/>
+		<EnumValue Name="Mixed" DisplayName="Imagem Mista" Description="A imagem executável para depurar é uma mistura de código nativo e gerenciado."/>
+		<EnumValue Name="Managed" DisplayName="Imagem Gerenciada" Description="A imagem executável para depurar é um aplicativo totalmente gerenciado."/>
+	</EnumProperty>
+
+	<BoolProperty Name="AllowLocalNetworkLoopback" DisplayName="Permitir o loopback de rede local" F1Keyword="javascript.project.property.debugging.allowlocalnetworkloopback" Description="Na depuração de um aplicativo da Windows Store, permite que você use serviços locais, depure o tráfego de rede e use um loopback local para comunicação com componentes no mesmo computador.">
+	</BoolProperty>
+</Rule>

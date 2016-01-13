@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Rule Name="iOSEmulatoriPadRetina" DisplayName="Simulátor – iPad Retina" PageTemplate="debugger" Description="Simulátor – iPad Retina" xmlns="http://schemas.microsoft.com/build/2009/properties">
+  <Rule.DataSource>
+		<DataSource Persistence="UserFile" HasConfigurationCondition="true"/>
+  </Rule.DataSource>
+
+	<BoolProperty Name="AllowLocalNetworkLoopback" DisplayName="Povolit zpětnou smyčku místní sítě" F1Keyword="javascript.project.property.debugging.allowlocalnetworkloopback" Description="Při ladění aplikace pro Windows Store umožňuje použití místních služeb, ladění síťových přenosů a použití místní zpětné smyčky pro komunikaci se součástmi ve stejném počítači.">
+	</BoolProperty>
+</Rule>

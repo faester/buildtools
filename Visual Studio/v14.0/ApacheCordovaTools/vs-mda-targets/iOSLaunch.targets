@@ -1,0 +1,50 @@
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <!-- Add your debugger to the list of available debuggers in the project property pages dialog. -->
+    <PropertyPageSchema Include="$(MSBuildThisFileDirectory)$(LangName)\iOSLocalDevice.xaml">
+      <Context>Project</Context>
+    </PropertyPageSchema>
+    <PropertyPageSchema Include="$(MSBuildThisFileDirectory)$(LangName)\iOSRemoteDevice.xaml">
+      <Context>Project</Context>
+    </PropertyPageSchema>
+    <PropertyPageSchema Include="$(MSBuildThisFileDirectory)$(LangName)\RippleiPad.xaml">
+      <Context>Project</Context>
+    </PropertyPageSchema>
+    <PropertyPageSchema Include="$(MSBuildThisFileDirectory)$(LangName)\RippleiPad3.xaml">
+      <Context>Project</Context>
+    </PropertyPageSchema>
+    <PropertyPageSchema Include="$(MSBuildThisFileDirectory)$(LangName)\RippleiPhone4.xaml">
+      <Context>Project</Context>
+    </PropertyPageSchema>
+    <PropertyPageSchema Include="$(MSBuildThisFileDirectory)$(LangName)\RippleiPhone5.xaml">
+      <Context>Project</Context>
+    </PropertyPageSchema>
+    <PropertyPageSchema Include="$(MSBuildThisFileDirectory)$(LangName)\iOSEmulatoriPad2.xaml">
+      <Context>Project</Context>
+    </PropertyPageSchema>
+	<PropertyPageSchema Include="$(MSBuildThisFileDirectory)$(LangName)\iOSEmulatoriPadAir.xaml">
+	  <Context>Project</Context>
+	</PropertyPageSchema>
+	<PropertyPageSchema Include="$(MSBuildThisFileDirectory)$(LangName)\iOSEmulatoriPadRetina.xaml">
+	  <Context>Project</Context>
+	</PropertyPageSchema>
+    <PropertyPageSchema Include="$(MSBuildThisFileDirectory)$(LangName)\iOSEmulatoriPhone4S.xaml">
+      <Context>Project</Context>
+    </PropertyPageSchema>
+    <PropertyPageSchema Include="$(MSBuildThisFileDirectory)$(LangName)\iOSEmulatoriPhone5.xaml">
+      <Context>Project</Context>
+    </PropertyPageSchema>
+    <PropertyPageSchema Include="$(MSBuildThisFileDirectory)$(LangName)\iOSEmulatoriPhone5S.xaml">
+      <Context>Project</Context>
+    </PropertyPageSchema>
+	<PropertyPageSchema Include="$(MSBuildThisFileDirectory)$(LangName)\iOSEmulatoriPhone6.xaml">
+	  <Context>Project</Context>
+	</PropertyPageSchema>
+	<PropertyPageSchema Include="$(MSBuildThisFileDirectory)$(LangName)\iOSEmulatoriPhone6Plus.xaml">
+	  <Context>Project</Context>
+	</PropertyPageSchema>
+  </ItemGroup>
+  <PropertyGroup>
+    <DebuggerFlavor>RippleiPhone5</DebuggerFlavor>
+  </PropertyGroup>
+</Project>

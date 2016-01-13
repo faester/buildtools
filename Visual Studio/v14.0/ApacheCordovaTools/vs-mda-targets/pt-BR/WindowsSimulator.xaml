@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Rule Name="WindowsSimulator" DisplayName="Simulador" PageTemplate="debugger" Description="Opções de Simulador" xmlns="http://schemas.microsoft.com/build/2009/properties">
+	<Rule.DataSource>
+		<DataSource Persistence="UserFile" HasConfigurationCondition="true"/>
+    </Rule.DataSource>
+
+	<BoolProperty Name="AllowLocalNetworkLoopback" DisplayName="Permitir o loopback de rede local" F1Keyword="javascript.project.property.debugging.allowlocalnetworkloopback" Description="Na depuração de um aplicativo da Windows Store, permite que você use serviços locais, depure o tráfego de rede e use um loopback local para comunicação com componentes no mesmo computador.">
+	</BoolProperty>
+</Rule>

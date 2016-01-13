@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Copyright, Microsoft Corporation, All rights reserved.-->
+<Rule Name="DebuggerGeneralProperties" DisplayName="调试器常规属性" Description="常规调试器选项" xmlns="http://schemas.microsoft.com/build/2009/properties">
+	<Rule.DataSource>
+		<DataSource Persistence="UserFile"/>
+	</Rule.DataSource>
+
+	<StringProperty Name="SymbolsPath" DisplayName="符号搜索路径" Description="调试器用来定位符号的搜索路径。">
+	</StringProperty>
+
+	<StringProperty Name="DebuggerFlavor" Visible="false" Description="选定为活动调试器的调试规则。">
+	</StringProperty>
+
+	<EnumProperty Name="ImageClrType" Visible="false" Description="传递给调试器以使其知道该项目是否为托管项目的“hidden”属性。">
+		<EnumProperty.DataSource>
+			<DataSource Persistence="UserFile" HasConfigurationCondition="true" PersistedName="_TargetImageClrType"/>
+		</EnumProperty.DataSource>
+		<EnumValue Name="Native" DisplayName="本机映像" Description="要调试的可执行文件映像是完全的本机应用程序。"/>
+		<EnumValue Name="Mixed" DisplayName="混合映像" Description="要调试的可执行文件映像是本机代码和托管代码的混合。"/>
+		<EnumValue Name="Managed" DisplayName="托管映像" Description="要调试的可执行文件映像是完全的托管应用程序。"/>
+	</EnumProperty>
+
+	<BoolProperty Name="AllowLocalNetworkLoopback" DisplayName="允许本地网络环回" F1Keyword="javascript.project.property.debugging.allowlocalnetworkloopback" Description="在调试 Windows 应用商店应用时，你可以使用本地服务、调试网络通讯以及使用本地环回来与同一台计算机上的组件进行通信。">
+	</BoolProperty>
+</Rule>

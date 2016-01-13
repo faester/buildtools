@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Rule Name="WindowsLocal" DisplayName="Lokaler Computer" PageTemplate="debugger" Description="Lokaler Computer: Optionen" xmlns="http://schemas.microsoft.com/build/2009/properties">
+	<Rule.DataSource>
+		<DataSource Persistence="UserFile" HasConfigurationCondition="true"/>
+    </Rule.DataSource>
+
+	<BoolProperty Name="AllowLocalNetworkLoopback" DisplayName="Lokales Netzwerkloopback zulassen" F1Keyword="javascript.project.property.debugging.allowlocalnetworkloopback" Description="Ermöglicht beim Debuggen einer Windows Store-App, lokale Dienste zu nutzen, den Netzwerkdatenverkehr zu debuggen und ein lokales Loopback für die Kommunikation mit Komponenten auf dem gleichen Computer zu verwenden.">
+	</BoolProperty>
+</Rule>

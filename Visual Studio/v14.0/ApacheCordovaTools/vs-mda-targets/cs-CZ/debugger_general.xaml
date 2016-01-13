@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Copyright, Microsoft Corporation, All rights reserved.-->
+<Rule Name="DebuggerGeneralProperties" DisplayName="Obecné vlastnosti ladicího programu" Description="Obecné možnosti ladicího programu" xmlns="http://schemas.microsoft.com/build/2009/properties">
+	<Rule.DataSource>
+		<DataSource Persistence="UserFile"/>
+	</Rule.DataSource>
+
+	<StringProperty Name="SymbolsPath" DisplayName="Cesta pro hledání symbolů" Description="Cesta, kterou ladicí program používá pro vyhledávání symbolů">
+	</StringProperty>
+
+	<StringProperty Name="DebuggerFlavor" Visible="false" Description="Pravidlo ladění vybrané jako aktivní ladicí program">
+	</StringProperty>
+
+	<EnumProperty Name="ImageClrType" Visible="false" Description="Skrytá vlastnost předávaná ladicím programům, podle níž poznají, jestli se jedná o spravovaný projekt">
+		<EnumProperty.DataSource>
+			<DataSource Persistence="UserFile" HasConfigurationCondition="true" PersistedName="_TargetImageClrType"/>
+		</EnumProperty.DataSource>
+		<EnumValue Name="Native" DisplayName="Nativní image" Description="Spustitelná image, která se má ladit, je plně nativní aplikace."/>
+		<EnumValue Name="Mixed" DisplayName="Smíšená image" Description="Spustitelná image, která se má ladit, je kombinací nativního a spravovaného kódu."/>
+		<EnumValue Name="Managed" DisplayName="Spravovaná image" Description="Spustitelná image, která se má ladit, je plně spravovaná aplikace."/>
+	</EnumProperty>
+
+	<BoolProperty Name="AllowLocalNetworkLoopback" DisplayName="Povolit zpětnou smyčku místní sítě" F1Keyword="javascript.project.property.debugging.allowlocalnetworkloopback" Description="Při ladění aplikace pro Windows Store umožňuje použití místních služeb, ladění síťových přenosů a použití místní zpětné smyčky pro komunikaci se součástmi ve stejném počítači.">
+	</BoolProperty>
+</Rule>
